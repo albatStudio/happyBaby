@@ -1,6 +1,8 @@
 package com.superkorsuk.happybaby;
 
+import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +23,8 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import java.util.Calendar;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -67,12 +71,16 @@ public class MainActivity extends AppCompatActivity
 
         switch (v.getId()) {
             case R.id.buttonAlarm1:
-                alarm.setTimerForOnetime(MainActivity.this, 5);
+                alarm.setTimerForOnetime(5);
                 break;
             case R.id.buttonAlarm2:
-                alarm.setTimerForRepeat(MainActivity.this, 5, 2);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(System.currentTimeMillis() + 5000);
+                alarm.setTimerForRepeat(calendar, 60);
                 break;
             case R.id.buttonNotification:
+                alarm.removeAlarm();
+
                 Log.d("NOTIFICATION", "notification start.");
 
                 NotificationController n = new NotificationController(getApplicationContext());
