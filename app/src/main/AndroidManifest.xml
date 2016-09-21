@@ -15,7 +15,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             </intent-filter>
         </activity>
         <activity
@@ -35,7 +35,17 @@
 
         <meta-data
             android:name="com.google.android.gms.version"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".views.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".views.ProfileSelectActivity"></activity>
 
         <activity android:name=".ChartActivity"></activity>
     </application>
