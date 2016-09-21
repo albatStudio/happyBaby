@@ -89,6 +89,9 @@ public class MainActivity extends AppCompatActivity
                 PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, (int) System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 n.notify(n.makeSimpleNotification(pendingIntent, "TITLE", "Messages"));
                 break;
+            case R.id.buttonChartActivity:
+                Intent intent1 = new Intent(this, ChartActivity.class);
+                startActivity(intent1);
             default:
                 break;
 

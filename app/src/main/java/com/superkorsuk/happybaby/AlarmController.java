@@ -55,12 +55,11 @@ public class AlarmController {
     }
 
     public void removeAlarm() {
+        // cancel 불안정.
         Log.d("ALARM", pendingIntent.toString());
-        Intent intent = new Intent(this.context, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this.context, 1234567, intent, 0);
         this.alarmManager.cancel(pendingIntent);
 
-        
+
     }
 
 }
