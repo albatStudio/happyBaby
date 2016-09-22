@@ -23,7 +23,12 @@ import android.widget.Toast;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.superkorsuk.happybaby.db.BabyRepository;
+import com.superkorsuk.happybaby.models.Baby;
+import com.superkorsuk.happybaby.models.Gender;
+
 import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
@@ -92,7 +97,8 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.button_add_baby:
-                addBabyRandom();
+//                addBabyRandom();
+                addBabyRandomNew();
                 break;
 
             case R.id.button_goToDBTestPage:
@@ -104,6 +110,35 @@ public class MainActivity extends AppCompatActivity
                 break;
 
         }
+    }
+
+    private void addBabyRandomNew() {
+        BabyRepository babyRepo = new BabyRepository(getApplicationContext());
+
+        // add
+        String babyName = "Baby" + (int)(Math.random() * 100);
+        Baby baby = new Baby();
+        baby.setName(babyName);
+        baby.setGender(Gender.FEMALE);
+        baby.setBirthday(new Date());
+        baby.setGestationPeriod(42, 2);
+
+        long id = babyRepo.add(baby);
+
+        // select
+        if (id > 0) {
+            Toast.makeText(getApplicationContext(), babyName + " was added !", Toast.LENGTH_LONG).show();
+
+            Baby baby1 = babyRepo.find(id);
+            if (baby1 != null) {
+                Log.d("DB", "selected baby is " + baby1.getId() + " : " + baby1.getName());
+            } else {
+                Log.d("DB", "baby not found");
+            }
+        }
+
+
+
     }
 
     private void addBabyRandom() {
