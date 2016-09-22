@@ -95,6 +95,11 @@ public class MainActivity extends AppCompatActivity
                 addBabyRandom();
                 break;
 
+            case R.id.button_goToDBTestPage:
+                Intent intentDBTest = new Intent(getApplicationContext(), DBTest.class);
+                startActivity(intentDBTest);
+                break;
+
             default:
                 break;
 
