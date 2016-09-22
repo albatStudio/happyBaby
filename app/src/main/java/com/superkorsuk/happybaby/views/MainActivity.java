@@ -26,6 +26,10 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.superkorsuk.happybaby.AlarmController;
+import com.superkorsuk.happybaby.Baby;
+import com.superkorsuk.happybaby.DBBabyInformation;
+import com.superkorsuk.happybaby.DBController;
+import com.superkorsuk.happybaby.DBTest;
 import com.superkorsuk.happybaby.NotificationController;
 import com.superkorsuk.happybaby.R;
 import com.superkorsuk.happybaby.SettingsActivity;
@@ -100,9 +104,10 @@ public class MainActivity extends AppCompatActivity
             case R.id.buttonChartActivity:
                 Intent intent1 = new Intent(this, ChartActivity.class);
                 startActivity(intent1);
+                break;
             case R.id.buttonAlert:
                 final MaterialDialog mDialog = new MaterialDialog(this);
-                
+
                 mDialog.setTitle("Alert Test")
                         .setMessage("This is the alert test")
                         .setPositiveButton("OK", new View.OnClickListener() {
@@ -121,10 +126,33 @@ public class MainActivity extends AppCompatActivity
                         })
                         .setCanceledOnTouchOutside(false)
                         .show();
+                break;
+
+            case R.id.button_add_baby:
+                addBabyRandom();
+                break;
+
+            case R.id.button_goToDBTestPage:
+                Baby baby1 = new Baby("baby1", 2016, 5, 12, 1, 0, 14);
+                DBController dbController = new DBController(this, "babyInform");
+
+                dbController.insert(baby1);
+//                Intent intentDBTest = new Intent(getApplicationContext(), DBTest.class);
+//                startActivity(intentDBTest);
+                break;
 
             default:
                 break;
         }
+    }
+
+    private void addBabyRandom() {
+        DBBabyInformation babyInfo = new DBBabyInformation(getApplicationContext());
+        String babyName = "Baby" + (int)(Math.random() * 100);
+        babyInfo.insert(babyName, 2016, 5, 12, 1, 0, 14);
+        babyInfo.close();
+
+        Toast.makeText(getApplicationContext(), babyName + " was added!", Toast.LENGTH_LONG).show();
     }
 
     @Override
