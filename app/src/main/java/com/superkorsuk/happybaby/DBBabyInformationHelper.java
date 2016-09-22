@@ -12,13 +12,13 @@ public class DBBabyInformationHelper extends SQLiteOpenHelper {
 
     private String tableName = "babyInformation";
 
-    public DBBabyInformationHelper(DBBabyInformation dbBabyInformation, String dbName, Context context, int dbVersion) {
+    public DBBabyInformationHelper(Context context, String dbName, int dbVersion) {
         super(context, dbName, null, dbVersion);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE " + tableName + " (name VARCHAR(200) PRIMARY KEY, birthdayYear INT, birthdayMonth INT, birthdayDay INT, sex INT, pregnant INT, weight INT, photo BLOB);";
+        String sql = "CREATE TABLE " + tableName + " (name VARCHAR(200) PRIMARY KEY, birthday_year INT, birthday_month INT, birthday_day INT, sex INT, pregnant INT, weight INT, photo BLOB);";
         db.execSQL(sql);
     }
 

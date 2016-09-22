@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -89,10 +90,24 @@ public class MainActivity extends AppCompatActivity
                 PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, (int) System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 n.notify(n.makeSimpleNotification(pendingIntent, "TITLE", "Messages"));
                 break;
+
+            case R.id.button_add_baby:
+                addBabyRandom();
+                break;
+
             default:
                 break;
 
         }
+    }
+
+    private void addBabyRandom() {
+        DBBabyInformation babyInfo = new DBBabyInformation(getApplicationContext());
+        String babyName = "Baby" + (int)(Math.random() * 100);
+        babyInfo.insert(babyName, 2016, 5, 12, 1, 0, 14);
+        babyInfo.close();
+
+        Toast.makeText(getApplicationContext(), babyName + " was added!", Toast.LENGTH_LONG).show();
     }
 
     @Override
