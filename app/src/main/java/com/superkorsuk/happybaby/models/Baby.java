@@ -69,6 +69,17 @@ public class Baby {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         return df.format(birthday);
     }
+
+    @Override
+    public String toString() {
+        return "Baby{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birthday=" + this.getBirthDayDateTime() +
+                ", gender=" + gender +
+                ", gestationPeriod=" + gestationPeriod +
+                '}';
+    }
 }
 
 

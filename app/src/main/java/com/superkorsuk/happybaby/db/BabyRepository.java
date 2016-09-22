@@ -9,7 +9,9 @@ import android.util.Log;
 
 import com.superkorsuk.happybaby.models.Baby;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Luke on 2016-09-22.
@@ -98,6 +100,25 @@ public class BabyRepository implements Repository<Baby> {
         }
 
         return null;
+    }
+
+    public List<Baby> all() {
+        final SQLiteDatabase db = openHelper.getWritableDatabase();
+        final List<Baby> babies = new ArrayList<>();
+
+        try {
+            final Cursor cursor = db.rawQuery("select * from " + BabyOpenHelper.tableName, new String[]{});
+            for(int i = 0, size = cursor.getCount(); i < size; i++) {
+                cursor.moveToPosition(i);
+                babies.add(toBabyMapper.map(cursor));
+            }
+
+            cursor.close();
+
+            return babies;
+        } finally {
+            db.close();
+        }
     }
 
 

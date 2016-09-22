@@ -29,6 +29,7 @@ import com.superkorsuk.happybaby.models.Gender;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
@@ -105,6 +106,13 @@ public class MainActivity extends AppCompatActivity
                 Intent intentDBTest = new Intent(getApplicationContext(), DBTest.class);
                 startActivity(intentDBTest);
                 break;
+
+            case R.id.button_get_all_babies:
+                BabyRepository babyRepo = new BabyRepository(getApplicationContext());
+                List<Baby> babies = babyRepo.all();
+                for(Baby baby : babies) {
+                    Log.d("DB", baby.toString());
+                }
 
             default:
                 break;
