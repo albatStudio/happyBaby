@@ -1,8 +1,10 @@
-package com.superkorsuk.happybaby;
+package com.superkorsuk.happybaby.views;
 
-import android.app.AlarmManager;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.PendingIntent;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,13 +20,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.superkorsuk.happybaby.AlarmController;
+import com.superkorsuk.happybaby.NotificationController;
+import com.superkorsuk.happybaby.R;
+import com.superkorsuk.happybaby.SettingsActivity;
+
 import java.util.Calendar;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
+
+import me.drakeet.materialdialog.MaterialDialog;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -92,9 +100,30 @@ public class MainActivity extends AppCompatActivity
             case R.id.buttonChartActivity:
                 Intent intent1 = new Intent(this, ChartActivity.class);
                 startActivity(intent1);
+            case R.id.buttonAlert:
+                final MaterialDialog mDialog = new MaterialDialog(this);
+                
+                mDialog.setTitle("Alert Test")
+                        .setMessage("This is the alert test")
+                        .setPositiveButton("OK", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(MainActivity.this, "OK clicked", Toast.LENGTH_SHORT).show();
+                                mDialog.dismiss();
+                            }
+                        })
+                        .setNegativeButton("Cancel", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(MainActivity.this, "Cancel clicked", Toast.LENGTH_SHORT).show();
+                                mDialog.dismiss();
+                            }
+                        })
+                        .setCanceledOnTouchOutside(false)
+                        .show();
+
             default:
                 break;
-
         }
     }
 

@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.superkorsuk.happybaby.MainActivity"
+    tools:context="com.superkorsuk.happybaby.views.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
     <TextView
@@ -54,6 +54,16 @@
         android:text="Go to Chart Activity"
         android:id="@+id/buttonChartActivity"
         android:layout_below="@+id/buttonNotification"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onClick" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test Alet Dialog"
+        android:id="@+id/buttonAlert"
+        android:layout_below="@+id/buttonChartActivity"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:onClick="onClick" />

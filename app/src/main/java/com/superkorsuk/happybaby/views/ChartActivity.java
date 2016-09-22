@@ -1,4 +1,4 @@
-package com.superkorsuk.happybaby;
+package com.superkorsuk.happybaby.views;
 
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.superkorsuk.happybaby.R;
 
 import java.util.ArrayList;
 import java.util.List;

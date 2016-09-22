@@ -24,7 +24,7 @@ public class AlarmController {
     Intent intent;
     PendingIntent pendingIntent;
 
-    AlarmController(Context context) {
+    public AlarmController(Context context) {
         this.context = context;
         this.alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         this.intent = new Intent(this.context, AlarmReceiver.class);
@@ -32,7 +32,7 @@ public class AlarmController {
             // timer 여러개일때를 대비하여 id를 hashCode로
     }
 
-    AlarmController(Context context, PendingIntent pendingIntent) {
+    public AlarmController(Context context, PendingIntent pendingIntent) {
         this.context = context;
         this.alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         this.pendingIntent = pendingIntent;

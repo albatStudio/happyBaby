@@ -14,7 +14,7 @@ public class NotificationController {
     Context context;
     NotificationManager notificationManager;
 
-    NotificationController(Context context) {
+    public NotificationController(Context context) {
         this.context = context;
         this.notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
     }
