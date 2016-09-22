@@ -45,6 +45,12 @@ public class DBController {
         return db.insert(tableName, null, values);
     }
 
+    // TODO : Milk data insert method
+//    public long insert(MilkData milkData ) {
+//        ....
+//    }
+
+
     ///////////// old.
     public long insert(String name, int year, int month, int day, int sex, int pregnant, int weight) {
 

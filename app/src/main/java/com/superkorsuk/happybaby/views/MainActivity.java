@@ -133,10 +133,11 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.button_goToDBTestPage:
-                Baby baby1 = new Baby("baby1", 2016, 5, 12, 1, 0, 14);
+                Baby baby1 = new Baby("baby" + (int)Math.random()*100, 2016, 5, 12, 1, 0, 14);
                 DBController dbController = new DBController(this, "babyInform");
-
-                dbController.insert(baby1);
+                if (dbController.insert(baby1) > 0) {
+                    Toast.makeText(this, "Data inserted.", Toast.LENGTH_SHORT).show();
+                }
 //                Intent intentDBTest = new Intent(getApplicationContext(), DBTest.class);
 //                startActivity(intentDBTest);
                 break;
