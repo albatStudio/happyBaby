@@ -29,6 +29,20 @@ public class DBBabyInformation {
             Log.e(logTag, "Cannot get Database.");
         }
     }
+
+    public long insert(Baby babyInfomation) {
+        ContentValues values = new ContentValues();
+        values.put("name", babyInfomation.getName());
+        values.put("birthday_year", babyInfomation.getYear());
+        values.put("birthday_month", babyInfomation.getMonth());
+        values.put("birthday_day", babyInfomation.getDay());
+        values.put("sex", babyInfomation.getDay());
+        values.put("pregnant", babyInfomation.getPregnant());
+        values.put("weight", babyInfomation.getWeight());
+
+        return db.insert(TABLENAME, null, values);
+    }
+
 //    name VARCHAR(200) PRIMARY KEY, birthdayYear INT, birthdayMonth INT, birthdayDay INT, sex INT, pregnant INT, weight INT, photo BLOB
     public void insert(String name, int year, int month, int day, int sex, int pregnant, int weight) {
 
@@ -62,7 +76,12 @@ public class DBBabyInformation {
     }
 
     public void select(String name) {
+        Baby babyInfomation = new Baby();
+
         Cursor c = db.query(TABLENAME, new String[] {name}, "name=?", null, null, null, null);
+
+
+
     }
 
     public void close() {

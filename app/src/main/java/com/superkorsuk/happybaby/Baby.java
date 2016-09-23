@@ -23,6 +23,10 @@ public class Baby {
         this.weight = weight;
     }
 
+    public Baby() {
+
+    }
+
     public String getName() {
         return name;
     }
@@ -50,4 +54,18 @@ public class Baby {
     public int getWeight() {
         return weight;
     }
+
+    public void setName(String name) { this.name = name; }
+
+    public void setYear(int year) { this.year = year; }
+
+    public void setMonth(int month) { this.month = month; }
+
+    public void setDay(int day) { this.day = day; }
+
+    public void setSex(int sex) { this.sex = sex; }
+
+    public void setPregnant(int pregnant) { this.pregnant = pregnant; }
+
+    public void setWeight(int weight) { this.weight = weight; }
 }
