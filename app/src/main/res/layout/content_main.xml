@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.superkorsuk.happybaby.views.MainActivity"
+    tools:context="com.superkorsuk.happybaby.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
     <TextView
@@ -85,6 +85,38 @@
         android:layout_below="@+id/button_add_baby"
         android:id="@+id/button_goToDBTestPage"
         android:onClick="onClick"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="GET ALL BABIES"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_get_all_babies"
+        android:layout_below="@+id/button_goToDBTestPage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onClick"/>
+
+    <Button
+        android:text="GET Photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_get_photo"
+        android:layout_below="@+id/button_get_all_babies"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onClick"/>
+
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:name="com.superkorsuk.happybaby.views.ChartFragment"
+        android:id = "@+id/frag_chart"
+        android:layout_below="@+id/button_get_photo"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

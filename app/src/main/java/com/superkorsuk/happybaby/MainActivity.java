@@ -1,13 +1,13 @@
-package com.superkorsuk.happybaby.views;
+package com.superkorsuk.happybaby;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.PendingIntent;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -25,16 +25,17 @@ import android.widget.Toast;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.superkorsuk.happybaby.AlarmController;
-import com.superkorsuk.happybaby.Baby;
-import com.superkorsuk.happybaby.DBBabyInformation;
-import com.superkorsuk.happybaby.DBController;
-import com.superkorsuk.happybaby.DBTest;
-import com.superkorsuk.happybaby.NotificationController;
-import com.superkorsuk.happybaby.R;
-import com.superkorsuk.happybaby.SettingsActivity;
+import com.superkorsuk.happybaby.controllers.AlarmController;
+import com.superkorsuk.happybaby.controllers.NotificationController;
+import com.superkorsuk.happybaby.db.BabyRepository;
+import com.superkorsuk.happybaby.models.*;
+//import com.superkorsuk.happybaby.models.Gender;
+import com.superkorsuk.happybaby.views.*;
 
+import java.net.URI;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import me.drakeet.materialdialog.MaterialDialog;
 
@@ -76,7 +77,19 @@ public class MainActivity extends AppCompatActivity
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
+        // Chart Fragment
+        createChartFragment();
+
+
     }
+
+    public void createChartFragment() {
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.add(R.id.frag_chart, ChartFragment.newInstance("param1", "param2"));
+        fragmentTransaction.commit();
+    }
+
 
     public void onClick(View v) {
         AlarmController alarm = new AlarmController(getApplicationContext());
@@ -129,31 +142,79 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.button_add_baby:
-                addBabyRandom();
+//                addBabyRandom();
+                addBabyRandomNew();
                 break;
 
             case R.id.button_goToDBTestPage:
-                Baby baby1 = new Baby("baby" + (int)Math.random()*100, 2016, 5, 12, 1, 0, 14);
-                DBController dbController = new DBController(this, "babyInform");
-                if (dbController.insert(baby1) > 0) {
-                    Toast.makeText(this, "Data inserted.", Toast.LENGTH_SHORT).show();
-                }
-//                Intent intentDBTest = new Intent(getApplicationContext(), DBTest.class);
-//                startActivity(intentDBTest);
+                Intent intentDBTest = new Intent(getApplicationContext(), DBTest.class);
+                startActivity(intentDBTest);
                 break;
 
+            case R.id.button_get_all_babies:
+                BabyRepository babyRepo = new BabyRepository(getApplicationContext());
+                List<Baby> babies = babyRepo.all();
+                for(Baby baby : babies) {
+                    Log.d("DB", baby.toString());
+                }
+                break;
+
+            case R.id.button_get_photo:
+                Intent intent2 = new Intent(this, GetPhotoActivity.class);
+                startActivity(intent2);
+                break;
+
+            default:
+                break;
+
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode != RESULT_OK) {
+            return;
+        }
+
+        switch (requestCode) {
+            case 999:
+                Uri imageCaptureUri = data.getData();
+                Log.d("Image", imageCaptureUri.getPath().toString());
+                break;
             default:
                 break;
         }
     }
 
-    private void addBabyRandom() {
-        DBBabyInformation babyInfo = new DBBabyInformation(getApplicationContext());
-        String babyName = "Baby" + (int)(Math.random() * 100);
-        babyInfo.insert(babyName, 2016, 5, 12, 1, 0, 14);
-        babyInfo.close();
+    private void addBabyRandomNew() {
+        BabyRepository babyRepo = new BabyRepository(getApplicationContext());
 
-        Toast.makeText(getApplicationContext(), babyName + " was added!", Toast.LENGTH_LONG).show();
+        // add
+        String babyName = "Baby" + (int)(Math.random() * 100);
+        Baby baby = new Baby();
+        baby.setName(babyName);
+        baby.setGender(Gender.FEMALE);
+        baby.setBirthday(new Date());
+        baby.setGestationPeriod(42, 2);
+
+        long id = babyRepo.add(baby);
+
+        // select
+        if (id > 0) {
+            Toast.makeText(getApplicationContext(), babyName + " was added !", Toast.LENGTH_LONG).show();
+
+            Baby baby1 = babyRepo.find(id);
+            if (baby1 != null) {
+                Log.d("DB", "selected baby is " + baby1.getId() + " : " + baby1.getName());
+            } else {
+                Log.d("DB", "baby not found");
+            }
+        }
+
+
+
     }
 
     @Override

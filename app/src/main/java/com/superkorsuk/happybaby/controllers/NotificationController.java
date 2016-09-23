@@ -1,4 +1,4 @@
-package com.superkorsuk.happybaby;
+package com.superkorsuk.happybaby.controllers;
 
 import android.annotation.TargetApi;
 import android.app.Notification;
@@ -6,6 +6,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.os.Build;
+
+import com.superkorsuk.happybaby.R;
 
 /**
  * Created by 1001078 on 2016. 9. 19..

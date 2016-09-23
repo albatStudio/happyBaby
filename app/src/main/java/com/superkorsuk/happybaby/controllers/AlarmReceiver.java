@@ -1,4 +1,4 @@
-package com.superkorsuk.happybaby;
+package com.superkorsuk.happybaby.controllers;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.superkorsuk.happybaby.SettingsActivity;
+import com.superkorsuk.happybaby.controllers.NotificationController;
 
 /**
  * Created by 1001078 on 2016. 9. 19..

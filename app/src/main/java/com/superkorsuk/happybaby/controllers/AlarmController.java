@@ -1,19 +1,12 @@
-package com.superkorsuk.happybaby;
+package com.superkorsuk.happybaby.controllers;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.LauncherApps;
-import android.os.Build;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.Calendar;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 /**
  * Created by 1001078 on 2016. 9. 19..
