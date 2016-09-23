@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity
 
                 NotificationController n = new NotificationController(getApplicationContext());
 
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                Intent intent = new Intent(MainActivity.this, GetPhotoActivity.class);
                 PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, (int) System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 n.notify(n.makeSimpleNotification(pendingIntent, "TITLE", "Messages"));
                 break;
@@ -242,11 +242,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-            startActivity(intent);
-//            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+//            startActivity(intent);
+////            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
