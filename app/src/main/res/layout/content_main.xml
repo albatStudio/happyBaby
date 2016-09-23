@@ -9,11 +9,83 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.superkorsuk.happybaby.MainActivity"
+    tools:context="com.superkorsuk.happybaby.views.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="The world could always use more heroes." />
+        android:text="The world could always use more heroes."
+        android:id="@+id/textView2" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alarm test for one-time"
+        android:id="@+id/buttonAlarm1"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onClick" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alarm test for repeat"
+        android:id="@+id/buttonAlarm2"
+        android:layout_below="@+id/buttonAlarm1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onClick" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Local Notification test"
+        android:id="@+id/buttonNotification"
+        android:layout_below="@+id/buttonAlarm2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onClick" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to Chart Activity"
+        android:id="@+id/buttonChartActivity"
+        android:layout_below="@+id/buttonNotification"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onClick" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test Alert Dialog"
+        android:id="@+id/buttonAlert"
+        android:layout_below="@+id/buttonChartActivity"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onClick" />
+
+    <Button
+        android:text="ADD A BABY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonAlert"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/button_add_baby"
+        android:onClick="onClick" />
+
+    <Button
+        android:text="Go to DB Test Page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_add_baby"
+        android:id="@+id/button_goToDBTestPage"
+        android:onClick="onClick"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>

@@ -1,13 +1,5 @@
-<<<<<<< HEAD
-*.iml
-.gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
-.DS_Store
-/build
 /captures
-=======
+
 # Built application files
 /*/build/
 
@@ -45,4 +37,4 @@ local.properties
 .Trashes
 ehthumbs.db
 Thumbs.db
->>>>>>> 0ca1cbb00da8b80c9e0b40a2fc342c6fab72cce7
+
