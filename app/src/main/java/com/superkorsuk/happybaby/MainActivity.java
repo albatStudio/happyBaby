@@ -40,7 +40,7 @@ import java.util.List;
 import me.drakeet.materialdialog.MaterialDialog;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, ChartFragment.OnFragmentInteractionListener {
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -314,5 +314,10 @@ public class MainActivity extends AppCompatActivity
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        
     }
 }
