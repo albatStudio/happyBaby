@@ -39,10 +39,9 @@ public class GetPhotoActivity extends AppCompatActivity {
 
         imageViewPhoto = (ImageView) findViewById(R.id.imageView_Photo);
 
+        // get bitmap image from stored file
         File storedImgeFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/happyBaby/sample.jpg");
-        Log.d("Image", storedImgeFile.toString());
         if (storedImgeFile.canRead()) {
-            Log.d("Image", "있음");
             Bitmap storedBitmap = BitmapFactory.decodeFile(String.valueOf(storedImgeFile));
 
             imageViewPhoto.setImageBitmap(storedBitmap);
@@ -53,12 +52,14 @@ public class GetPhotoActivity extends AppCompatActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_get_photo :
+                // get from gallery
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
                 startActivityForResult(intent, GET_PHOTO_FROM_GALLERY);
                 break;
 
             case R.id.btn_camera :
+                // get from camera
                 Intent intent1 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 String url = "tmp_" + System.currentTimeMillis() + ".jpg";
                 imagePath = Uri.fromFile(new File(Environment.getExternalStorageDirectory().getAbsoluteFile(), url));
