@@ -1,5 +1,6 @@
 package com.superkorsuk.happybaby.controllers;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -33,8 +34,9 @@ public class BabyBasicInfoController extends AppCompatActivity {
     }
 
     private void displayBabyInfo() {
-        BabyRepository baby;
-        List<Baby> babyList = baby.all()
+        Context context = new Context;
+        BabyRepository baby = new BabyRepository(context);
+        List<Baby> babyList = baby.all();
     }
 
 }
