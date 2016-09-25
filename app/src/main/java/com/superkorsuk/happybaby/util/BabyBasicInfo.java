@@ -1,5 +1,6 @@
 package com.superkorsuk.happybaby.util;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -36,11 +37,20 @@ public class BabyBasicInfo extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+/*
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+*/
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), BabyAdd.class));
             }
         });
 
