@@ -25,13 +25,12 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.superkorsuk.happybaby.db.BabyDoRepository;
 import com.superkorsuk.happybaby.util.Alarm;
-import com.superkorsuk.happybaby.util.BabyBasicInfo;
+import com.superkorsuk.happybaby.views.BabyBasicInfoActivity;
 import com.superkorsuk.happybaby.util.NotificationRegister;
 import com.superkorsuk.happybaby.db.BabyRepository;
 import com.superkorsuk.happybaby.models.*;
 import com.superkorsuk.happybaby.views.*;
 
-import java.text.Normalizer;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -145,8 +144,8 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.button_goToBabyBasicInfo:
-//                Intent intentBabyBasicInfo = new Intent(getApplicationContext(), BabyBasicInfo.class);
-                Intent intentBabyBasicInfo = new Intent(this, BabyBasicInfo.class);
+//                Intent intentBabyBasicInfo = new Intent(getApplicationContext(), BabyBasicInfoActivity.class);
+                Intent intentBabyBasicInfo = new Intent(this, BabyBasicInfoActivity.class);
 
                 startActivity(intentBabyBasicInfo);
                 break;

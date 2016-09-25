@@ -1,9 +1,8 @@
-package com.superkorsuk.happybaby.util;
+package com.superkorsuk.happybaby.views;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,13 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.superkorsuk.happybaby.R;
-import com.superkorsuk.happybaby.models.Baby;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 
-public class BabyAdd extends AppCompatActivity {
+public class BabyAddActivity extends AppCompatActivity {
     private int year, month, day;
     static String birthday;
 
@@ -40,7 +38,7 @@ public class BabyAdd extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 switch(event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        new DatePickerDialog(BabyAdd.this, dateSetListener, year, month, day).show();
+                        new DatePickerDialog(BabyAddActivity.this, dateSetListener, year, month, day).show();
                         break;
 
                     case MotionEvent.ACTION_UP:

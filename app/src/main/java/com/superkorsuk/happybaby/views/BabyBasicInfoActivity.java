@@ -1,29 +1,24 @@
-package com.superkorsuk.happybaby.util;
+package com.superkorsuk.happybaby.views;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import com.superkorsuk.happybaby.R;
 import com.superkorsuk.happybaby.db.BabyRepository;
 import com.superkorsuk.happybaby.models.Baby;
 import com.superkorsuk.happybaby.models.Gender;
+import com.superkorsuk.happybaby.adapters.BabyBasicInfoListViewAdapter;
 
 import java.util.List;
 
-public class BabyBasicInfo extends AppCompatActivity {
+public class BabyBasicInfoActivity extends AppCompatActivity {
 
     private Drawable iconDrawable;
     private String babyName;
@@ -50,7 +45,7 @@ public class BabyBasicInfo extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), BabyAdd.class));
+                startActivity(new Intent(view.getContext(), BabyAddActivity.class));
             }
         });
 

@@ -1,4 +1,4 @@
-package com.superkorsuk.happybaby.util;
+package com.superkorsuk.happybaby.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.superkorsuk.happybaby.R;
+import com.superkorsuk.happybaby.views.BabyBasicInfoActivity;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ import java.util.ArrayList;
  */
 
 public class BabyBasicInfoListViewAdapter extends BaseAdapter {
-    public ArrayList<BabyBasicInfo> listViewItemList = new ArrayList<BabyBasicInfo>();
+    public ArrayList<BabyBasicInfoActivity> listViewItemList = new ArrayList<BabyBasicInfoActivity>();
 
     public BabyBasicInfoListViewAdapter() {
     }
@@ -42,7 +43,7 @@ public class BabyBasicInfoListViewAdapter extends BaseAdapter {
         TextView babyNameTextView = (TextView) convertView.findViewById(R.id.tvBabyName);
         TextView babyDayTextView = (TextView) convertView.findViewById(R.id.tvBabyDay);
 
-        BabyBasicInfo listViewItem = new BabyBasicInfo();
+        BabyBasicInfoActivity listViewItem = new BabyBasicInfoActivity();
         listViewItem = listViewItemList.get(position);
 
         babyImageView.setImageDrawable(listViewItem.getIconDrawable());
@@ -63,7 +64,7 @@ public class BabyBasicInfoListViewAdapter extends BaseAdapter {
     }
 
     public void addItem(Drawable babyPic, String name, String birth) {
-        BabyBasicInfo baby = new BabyBasicInfo();
+        BabyBasicInfoActivity baby = new BabyBasicInfoActivity();
 
         baby.setIconDrawable(babyPic);
         baby.setBabyName(name);
