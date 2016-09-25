@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.superkorsuk.happybaby.db.BabyDoRepository;
 import com.superkorsuk.happybaby.util.Alarm;
 import com.superkorsuk.happybaby.util.BabyBasicInfo;
 import com.superkorsuk.happybaby.util.NotificationRegister;
@@ -30,6 +31,7 @@ import com.superkorsuk.happybaby.db.BabyRepository;
 import com.superkorsuk.happybaby.models.*;
 import com.superkorsuk.happybaby.views.*;
 
+import java.text.Normalizer;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -139,7 +141,6 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.button_add_baby:
-//                addBabyRandom();
                 addBabyRandomNew();
                 break;
 
@@ -200,22 +201,35 @@ public class MainActivity extends AppCompatActivity
         baby.setBirthday(new Date());
         baby.setGestationPeriod(42, 2);
 
-        long id = babyRepo.add(baby);
+        int result = babyRepo.create(baby);
 
-        // select
-        if (id > 0) {
+        if (result > 0) {
             Toast.makeText(getApplicationContext(), babyName + " was added !", Toast.LENGTH_LONG).show();
 
-            Baby baby1 = babyRepo.find(id);
-            if (baby1 != null) {
-                Log.d("DB", "selected baby is " + baby1.getId() + " : " + baby1.getName());
-            } else {
-                Log.d("DB", "baby not found");
-            }
+            Log.d("DB", "baby added");
+        } else {
+            Log.d("DB", "baby addition was failed");
         }
 
+    }
 
+    private void addBabyDoRandom() {
+        BabyDoRepository doRepo = new BabyDoRepository(getApplicationContext());
 
+        BabyDo babyDo = new BabyDo();
+        int amount = (int)(Math.random() * 150);
+        babyDo.setAmount(amount);
+        babyDo.setIssueDate(new Date());
+        babyDo.setNote("Good child.");
+        babyDo.setBabyDoType(BabyDoType.FORMULA);
+
+        int id = doRepo.create(babyDo);
+        if (id > 0) {
+            Toast.makeText(getApplicationContext(), "baby drank formula : " + amount + "ml", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "baby drank formula : failed", Toast.LENGTH_LONG).show();
+
+        }
     }
 
     @Override
@@ -270,6 +284,8 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
+        } else if (id == R.id.nav_dev_add_a_baby_do) {
+            addBabyDoRandom();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

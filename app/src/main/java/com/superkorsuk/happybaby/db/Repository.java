@@ -6,12 +6,11 @@ package com.superkorsuk.happybaby.db;
 
 public interface Repository<T> {
 
-    long add(T item);
-
-    void add(Iterable<T> items);
+    int create(T item);
 
     void update(T item);
 
-    void remove(T item);
+    void delete(T item);
+
 
 }
