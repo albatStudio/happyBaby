@@ -13,10 +13,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by Luke on 2016-09-22.
- */
-
 public class BabyRepository implements Repository<Baby> {
     private final BabyOpenHelper openHelper;
     private static final String dbName = "happybaby.db";
