@@ -23,12 +23,14 @@ import android.widget.Toast;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.superkorsuk.happybaby.db.BabyDoRepository;
 import com.superkorsuk.happybaby.util.Alarm;
 import com.superkorsuk.happybaby.util.NotificationRegister;
 import com.superkorsuk.happybaby.db.BabyRepository;
 import com.superkorsuk.happybaby.models.*;
 import com.superkorsuk.happybaby.views.*;
 
+import java.text.Normalizer;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -208,9 +210,23 @@ public class MainActivity extends AppCompatActivity
                 Log.d("DB", "baby not found");
             }
         }
+    }
 
+    private void addBabyDoRandom() {
+        BabyDoRepository doRepo = new BabyDoRepository(getApplicationContext());
 
+        int amount = (int)(Math.random() * 150);
+        Formula formula = new Formula();
+        formula.setAmount(amount);
+        formula.setBabyDoType(BabyDoType.FORMULA);
 
+        long id = doRepo.add(formula);
+        if (id > 0) {
+            Toast.makeText(getApplicationContext(), "baby drank formula : " + amount + "ml", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "baby drank formula : failed", Toast.LENGTH_LONG).show();
+
+        }
     }
 
     @Override
@@ -265,6 +281,8 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
+        } else if (id == R.id.nav_dev_add_a_baby_do) {
+            addBabyDoRandom();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

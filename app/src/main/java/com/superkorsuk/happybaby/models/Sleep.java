@@ -9,8 +9,8 @@ import java.util.Locale;
  */
 
 public class Sleep extends BabyDo {
-    public Date startTime;
-    public Date endTime;
+    public Date startTime = new Date();
+    public Date endTime = new Date();
 
     public int getDuration() {
         return endTime.compareTo(startTime);

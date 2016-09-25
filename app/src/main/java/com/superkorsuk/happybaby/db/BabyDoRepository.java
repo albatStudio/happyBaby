@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.superkorsuk.happybaby.models.BabyDo;
 import com.superkorsuk.happybaby.models.BabyDoType;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class BabyDoRepository implements Repository<BabyDo> {
 
-    private final BabyDoOpenHelper openHelper;
+    private final DBOpenHelper openHelper;
     private static final String dbName = "happybaby.db";
     private static final int dbVersion = 1;
 
@@ -26,7 +27,7 @@ public class BabyDoRepository implements Repository<BabyDo> {
     private final Mapper<Cursor, BabyDo> toBabyDoMapper;
 
     public BabyDoRepository(Context context) {
-        this.openHelper = new BabyDoOpenHelper(context, dbName, dbVersion);
+        this.openHelper = new DBOpenHelper(context);
         this.toContentValuesMapper = new BabyDoToContentValuesMapper();
         this.toBabyDoMapper = new CursorToBabyDoMapper();
 
@@ -39,7 +40,7 @@ public class BabyDoRepository implements Repository<BabyDo> {
         try {
             ContentValues values = toContentValuesMapper.map(item);
 
-            long id = db.insert(BabyDoOpenHelper.tableName, null, values);
+            long id = db.insert(DBOpenHelper.TABLE_BABY_DO, null, values);
 
             return id;
         } finally {
@@ -54,7 +55,7 @@ public class BabyDoRepository implements Repository<BabyDo> {
         try {
             for (BabyDo babyDo : items) {
                 ContentValues values = toContentValuesMapper.map(babyDo);
-                db.insert(BabyDoOpenHelper.tableName, null, values);
+                db.insert(DBOpenHelper.TABLE_BABY_DO, null, values);
             }
         } finally {
             db.close();
@@ -66,7 +67,7 @@ public class BabyDoRepository implements Repository<BabyDo> {
         final List<BabyDo> babyDoList = new ArrayList<>();
 
         try {
-            final Cursor cursor = db.rawQuery("select * from " + BabyDoOpenHelper.tableName, new String[]{});
+            final Cursor cursor = db.rawQuery("select * from " + DBOpenHelper.TABLE_BABY_DO, new String[]{});
             for(int i = 0, size = cursor.getCount(); i < size; i++) {
                 cursor.moveToPosition(i);
                 babyDoList.add(toBabyDoMapper.map(cursor));
@@ -89,44 +90,6 @@ public class BabyDoRepository implements Repository<BabyDo> {
 
     }
 
-    private class BabyDoOpenHelper extends SQLiteOpenHelper {
-        private static final String tableName = "baby_do";
-
-        private BabyDoOpenHelper(Context context, String dbName, int dbVersion) {
-            super(context, dbName, null, dbVersion);
-        }
-
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-            // TODO table creation
-            StringBuffer sb = new StringBuffer();
-            sb.append("CREATE TABLE ")
-                    .append(tableName)
-                    .append("(id INTEGER PRIMARY KEY AUTOINCREMENT")
-                    .append(", issue_date DATETIME DEFAULT CURRENT_TIMESTAMP")
-                    .append(", do_type INTEGER ")
-                    .append(", note TEXT")
-                    .append(", amount INTEGER")
-                    .append(", start_date DATETIME DEFAULT CURRENT_TIMESTAMP")
-                    .append(", end_date DATETIME DEFAULT CURRENT_TIMESTAMP")
-                    .append(", breast_left INTEGER")
-                    .append(", breast_right INTEGER")
-                    .append(", poop_color INTEGER")
-                    .append(" )");
-
-            db.execSQL(sb.toString());
-
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            String sql = "DROP TABLE IF EXISTS " + tableName;
-            db.execSQL(sql);
-            onCreate(db);
-        }
-
-
-    }
 
     private class BabyDoToContentValuesMapper implements Mapper<BabyDo, ContentValues> {
         @Override

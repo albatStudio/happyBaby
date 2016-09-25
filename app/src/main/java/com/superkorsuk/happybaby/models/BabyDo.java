@@ -13,7 +13,7 @@ public class BabyDo {
     // common
     protected long id;
     protected String note;
-    protected Date issueDate;
+    protected Date issueDate = new Date();
     protected BabyDoType babyDoType;
 
     public long getId() {

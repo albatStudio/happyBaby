@@ -33,4 +33,17 @@
         </menu>
     </item>
 
+    <item android:title="Developer">
+        <menu>
+            <item
+                android:id="@+id/nav_dev_alarm_for_one_time"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Menu" />
+            <item
+                android:id="@+id/nav_dev_add_a_baby_do"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Add A Baby Do" />
+        </menu>
+    </item>
+
 </menu>
