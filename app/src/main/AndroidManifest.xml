@@ -10,7 +10,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -46,9 +45,10 @@
         <activity
             android:name=".util.BabyBasicInfo"
             android:label="@string/title_activity_baby_basic_info"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".views.GetPhotoActivity" />
-        <activity android:name=".views.FirebaseActivity"></activity>
+        <activity android:name=".views.FirebaseActivity" />
+        <activity android:name=".util.BabyAdd"></activity>
     </application>
 
 </manifest>
