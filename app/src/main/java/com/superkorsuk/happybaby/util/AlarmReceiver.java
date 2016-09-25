@@ -1,4 +1,4 @@
-package com.superkorsuk.happybaby.controllers;
+package com.superkorsuk.happybaby.util;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.superkorsuk.happybaby.controllers.NotificationController;
 import com.superkorsuk.happybaby.views.GetPhotoActivity;
 
 /**
@@ -25,7 +24,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         Intent intent1 = new Intent(context, GetPhotoActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent1, 0);
 
-        NotificationController notificationController = new NotificationController(context);
-        notificationController.notify(notificationController.makeSimpleNotification(pendingIntent, "NOTI Title", "Subject message"));
+        NotificationRegister notificationRegister = new NotificationRegister(context);
+        notificationRegister.notify(notificationRegister.makeSimpleNotification(pendingIntent, "NOTI Title", "Subject message"));
     }
 }
