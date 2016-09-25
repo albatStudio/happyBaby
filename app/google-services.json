@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "945060149238",
+    "firebase_url": "https://happybaby-90585.firebaseio.com",
+    "project_id": "happybaby-90585",
+    "storage_bucket": "happybaby-90585.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945060149238:android:9117d6b57f7117a6",
+        "android_client_info": {
+          "package_name": "com.superkorsuk.happybaby"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "945060149238-p8l3vchh483akgpel8qsmel4q1d451em.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBL0WiKd-ovloLplLOoNWhUBFPPeQJaybo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

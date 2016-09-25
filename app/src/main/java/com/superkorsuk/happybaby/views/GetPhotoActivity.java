@@ -39,10 +39,9 @@ public class GetPhotoActivity extends AppCompatActivity {
 
         imageViewPhoto = (ImageView) findViewById(R.id.imageView_Photo);
 
+        // get bitmap image from stored file
         File storedImgeFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/happyBaby/sample.jpg");
-        Log.d("Image", storedImgeFile.toString());
         if (storedImgeFile.canRead()) {
-            Log.d("Image", "있음");
             Bitmap storedBitmap = BitmapFactory.decodeFile(String.valueOf(storedImgeFile));
 
             imageViewPhoto.setImageBitmap(storedBitmap);
@@ -53,10 +52,21 @@ public class GetPhotoActivity extends AppCompatActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_get_photo :
+                // get from gallery
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
                 startActivityForResult(intent, GET_PHOTO_FROM_GALLERY);
                 break;
+
+            case R.id.btn_camera :
+                // get from camera
+                Intent intent1 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                String url = "tmp_" + System.currentTimeMillis() + ".jpg";
+                imagePath = Uri.fromFile(new File(Environment.getExternalStorageDirectory().getAbsoluteFile(), url));
+                intent1.putExtra(MediaStore.EXTRA_OUTPUT, imagePath);
+                startActivityForResult(intent1, GET_PHOTO_FROM_CAMERA);
+                break;
+
             default:
                 break;
         }
@@ -72,7 +82,7 @@ public class GetPhotoActivity extends AppCompatActivity {
         switch (requestCode) {
             case GET_PHOTO_FROM_GALLERY :
                 imagePath = data.getData();
-
+                Log.d("IMAGE", "activity for gallery result : " + imagePath);
                 Intent intent = new Intent("com.android.camera.action.CROP");
                 intent.setDataAndType(imagePath, "image/*");
                 intent.putExtra("outputX", 200);
@@ -83,6 +93,20 @@ public class GetPhotoActivity extends AppCompatActivity {
                 intent.putExtra("return-data", true);
                 startActivityForResult(intent, CROP_IMAGE);
                 break;
+
+            case GET_PHOTO_FROM_CAMERA:
+                Log.d("IMAGE", "activity for camera result : " + imagePath);
+                Intent intent1 = new Intent("com.android.camera.action.CROP");
+                intent1.setDataAndType(imagePath, "image/*");
+                intent1.putExtra("outputX", 200);
+                intent1.putExtra("outputY", 200);
+                intent1.putExtra("aspectX", 1);
+                intent1.putExtra("aspectY", 1);
+                intent1.putExtra("scale", true);
+                intent1.putExtra("return-data", true);
+                startActivityForResult(intent1, CROP_IMAGE);
+                break;
+
             case CROP_IMAGE:
                 Bundle extras = data.getExtras();
                 String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/happyBaby/" + "sample.jpg";
@@ -106,7 +130,7 @@ public class GetPhotoActivity extends AppCompatActivity {
         File directoryHappyBaby = new File(dirPath);
 
         if (!directoryHappyBaby.exists()) {
-            boolean result = directoryHappyBaby.mkdir();
+            boolean result = directoryHappyBaby.mkdir(); 
 
             Log.d("Image", dirPath );
             Log.d("Image", "디렉토리 생성? " + result );
