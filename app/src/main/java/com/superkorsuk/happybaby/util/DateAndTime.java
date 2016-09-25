@@ -1,13 +1,11 @@
-package com.superkorsuk.happybaby.controllers;
-
-import android.util.Log;
+package com.superkorsuk.happybaby.util;
 
 import java.util.Calendar;
 
 /**
  * Created by 1001078 on 2016. 9. 20..
  */
-public class DateAndTimeController {
+public class DateAndTime {
 
     // targetDate 가 sourceDate 로 부터 몇일 지났음. (- 이면 몇일 남았음.)
     public static long compareDate(Calendar sourceDate, Calendar targetDate) {

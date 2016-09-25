@@ -1,4 +1,4 @@
-package com.superkorsuk.happybaby.controllers;
+package com.superkorsuk.happybaby.util;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -11,13 +11,13 @@ import java.util.Calendar;
 /**
  * Created by 1001078 on 2016. 9. 19..
  */
-public class AlarmController {
+public class Alarm {
     AlarmManager alarmManager;
     Context context;
     Intent intent;
     PendingIntent pendingIntent;
 
-    public AlarmController(Context context) {
+    public Alarm(Context context) {
         this.context = context;
         this.alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         this.intent = new Intent(this.context, AlarmReceiver.class);
@@ -25,21 +25,21 @@ public class AlarmController {
             // timer 여러개일때를 대비하여 id를 hashCode로
     }
 
-    public AlarmController(Context context, PendingIntent pendingIntent) {
+    public Alarm(Context context, PendingIntent pendingIntent) {
         this.context = context;
         this.alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         this.pendingIntent = pendingIntent;
     }
 
     public void setTimerForOnetime(int timerSeconds) {
-        Log.d("ALARM", "One time AlarmController is set.");
+        Log.d("ALARM", "One time Alarm is set.");
 
         // alarm fire 됐을때 할일. completion handler 처리 필요
         alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (timerSeconds * 1000), pendingIntent);
     }
 
     public void setTimerForRepeat(Calendar firstTime, int intervalSeconds) {
-        Log.d("ALARM", "Repeat AlarmController is set.");
+        Log.d("ALARM", "Repeat Alarm is set.");
 
         // android 5.1부터 최소 interval 이 60초 이상이어야 함.
         // alarm fire 됐을때 할일. completion handler 처리 필요
