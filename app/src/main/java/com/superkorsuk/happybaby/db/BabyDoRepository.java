@@ -35,6 +35,10 @@ public class BabyDoRepository implements Repository<BabyDo> {
     }
 
     @Override
+    public int create(BabyDo item) {
+        return 0;
+    }
+
     public long add(BabyDo item) {
         final SQLiteDatabase db = openHelper.getWritableDatabase();
 
@@ -49,7 +53,6 @@ public class BabyDoRepository implements Repository<BabyDo> {
         }
     }
 
-    @Override
     public void add(Iterable<BabyDo> items) {
         final SQLiteDatabase db = openHelper.getWritableDatabase();
 
@@ -87,7 +90,7 @@ public class BabyDoRepository implements Repository<BabyDo> {
     }
 
     @Override
-    public void remove(BabyDo item) {
+    public void delete(BabyDo item) {
 
     }
 

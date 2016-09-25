@@ -5,138 +5,79 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.j256.ormlite.dao.Dao;
 import com.superkorsuk.happybaby.models.Baby;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BabyRepository implements Repository<Baby> {
     private final DBOpenHelper openHelper;
 
-
-    private final Mapper<Baby, ContentValues> toContentValuesMapper;
-    private final Mapper<Cursor, Baby> toBabyMapper;
-
-
     public BabyRepository(Context context) {
         this.openHelper = new DBOpenHelper(context);
-        this.toContentValuesMapper = new BabyToContentValuesMapper();
-        this.toBabyMapper = new CursorToBabyMapper();
     }
 
     @Override
-    public long add(Baby item) {
-        final SQLiteDatabase db = openHelper.getWritableDatabase();
-        db.beginTransaction();
+    public int create(Baby item) {
 
+        int result = 0;
         try {
-            ContentValues values = toContentValuesMapper.map(item);
-
-            long id = db.insert(DBOpenHelper.TABLE_BABIES, null, values);
-            db.setTransactionSuccessful();
-
-            return id;
-        } finally {
-            db.endTransaction();
-            db.close();
+            result = openHelper.getBabyDao().create(item);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    }
 
-    @Override
-    public void add(Iterable<Baby> items) {
-        final SQLiteDatabase db = openHelper.getWritableDatabase();
-        db.beginTransaction();
-
-        try {
-            for (Baby baby: items) {
-                ContentValues values = toContentValuesMapper.map(baby);
-                db.insert(DBOpenHelper.TABLE_BABIES, null, values);
-            }
-
-            db.setTransactionSuccessful();
-
-        } finally {
-            db.endTransaction();
-            db.close();
-        }
+        return result;
     }
 
     @Override
     public void update(Baby item) {
-
-    }
-
-    @Override
-    public void remove(Baby item) {
-
-    }
-
-    public Baby find(long id) {
-        final SQLiteDatabase db = openHelper.getWritableDatabase();
-
         try {
-            final Cursor cursor = db.query(DBOpenHelper.TABLE_BABIES, new String[]{"id", "name", "birthday", "gender", "gestation_period"}, " id = ?", new String[]{String.valueOf(id)}, null, null, null);
-
-            if (cursor != null && cursor.getCount() > 0) {
-                cursor.moveToFirst();
-                Baby baby = toBabyMapper.map(cursor);
-                cursor.close();
-
-
-                return baby;
-            }
+            openHelper.getBabyDao().update(item);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
-        } finally {
-            db.close();
+    public void delete(Baby item) {
+        try {
+             openHelper.getBabyDao().delete(item);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public Baby find(int id) {
+
+        Baby baby = null;
+        try {
+            baby = openHelper.getBabyDao().queryForId(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-        return null;
+        return baby;
     }
 
     public List<Baby> all() {
-        final SQLiteDatabase db = openHelper.getWritableDatabase();
-        final List<Baby> babies = new ArrayList<>();
+        List<Baby> babies = new ArrayList<>();
 
+        Dao<Baby, Integer> babyDao = null;
         try {
-            final Cursor cursor = db.rawQuery("select * from " + DBOpenHelper.TABLE_BABIES, new String[]{});
-            for(int i = 0, size = cursor.getCount(); i < size; i++) {
-                cursor.moveToPosition(i);
-                babies.add(toBabyMapper.map(cursor));
-            }
+            babyDao = openHelper.getBabyDao();
+            babies = babyDao.queryForAll();
 
-            cursor.close();
-
-            return babies;
-        } finally {
-            db.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
+        return babies;
     }
 
-    private class BabyToContentValuesMapper implements Mapper<Baby,ContentValues> {
-        @Override
-        public ContentValues map(Baby baby) {
-            ContentValues cv = new ContentValues();
-            cv.put("name", baby.getName());
-            cv.put("birthday", baby.getBirthDayDateTime());
-            cv.put("gender", baby.getGender().getValue());
-            cv.put("gestation_period", baby.getGestationPeriod());
-
-            return cv;
-        }
-    }
-
-
-    private class CursorToBabyMapper implements Mapper<Cursor,Baby> {
-        @Override
-        public Baby map(Cursor cursor) {
-            Baby baby = new Baby();
-
-            baby.setId(Integer.parseInt(cursor.getString(0)));
-            baby.setName(cursor.getString(1));
-            // TODO more members
-
-            return baby;
-        }
-    }
 }

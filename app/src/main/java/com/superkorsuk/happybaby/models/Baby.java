@@ -1,19 +1,30 @@
 package com.superkorsuk.happybaby.models;
 
+import com.j256.ormlite.field.DataType;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by Luke on 2016-09-22.
- */
-
+@DatabaseTable(tableName = Baby.TABLE_NAME)
 public class Baby {
+    public static final String TABLE_NAME = "babies";
 
+    @DatabaseField(generatedId = true)
     private long id;
+
+    @DatabaseField(canBeNull = false)
     private String name;
-        private Date birthday;
+
+    @DatabaseField(dataType = DataType.DATE_STRING, format = "yyyy-MM-dd HH:mm:ss", canBeNull = false)
+    private Date birthday;
+
+    @DatabaseField(dataType = DataType.ENUM_INTEGER)
     private Gender gender;
+
     private int gestationPeriod;
 
     public Baby() {
@@ -71,17 +82,22 @@ public class Baby {
     }
 
     public String getBirthDayYear() {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy", Locale.getDefault());
-        return df.format(birthday);
+
+        return String.valueOf(getBirthDayToCalendar().get(Calendar.YEAR));
     }
 
     public String getBirthDayMonth() {
-        SimpleDateFormat df = new SimpleDateFormat("MM", Locale.getDefault());
-        return df.format(birthday);
+        return String.valueOf(getBirthDayToCalendar().get(Calendar.MONTH) + 1);
     }
     public String getBirthDayDay() {
-        SimpleDateFormat df = new SimpleDateFormat("dd", Locale.getDefault());
-        return df.format(birthday);
+        return String.valueOf(getBirthDayToCalendar().get(Calendar.DATE));
+    }
+
+    public Calendar getBirthDayToCalendar() {
+        Calendar cal = Calendar.getInstance(Locale.getDefault());
+        cal.setTime(birthday);
+
+        return cal;
     }
 
     @Override

@@ -2,24 +2,36 @@ package com.superkorsuk.happybaby.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.table.TableUtils;
+import com.superkorsuk.happybaby.models.Baby;
 
-public class DBOpenHelper extends SQLiteOpenHelper {
+import java.sql.SQLException;
+
+public class DBOpenHelper extends OrmLiteSqliteOpenHelper {
     public static final String TABLE_BABIES = "babies";
     public static final String TABLE_BABY_DO = "baby_do";
 
-    private static final String dbName = "happybaby.db";
-    private static final int dbVersion = 2;
+    private static final String DATABASE_NAME = "happybaby.db";
+    private static final int DB_VERSION = 2;
+
+    private Dao<Baby, Integer> babyDao = null;
 
 
     public DBOpenHelper(Context context) {
-        super(context, dbName, null, dbVersion);
+        super(context, DATABASE_NAME, null, DB_VERSION);
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE " + TABLE_BABIES + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(200), birthday DATETIME DEFAULT CURRENT_TIMESTAMP, gender INTEGER, gestation_period INTEGER)";
-        db.execSQL(sql);
+    public void onCreate(SQLiteDatabase db, ConnectionSource cs) {
+
+        try {
+            TableUtils.createTable(cs, Baby.class);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         StringBuffer sb = new StringBuffer();
         sb.append("CREATE TABLE ")
@@ -41,14 +53,24 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sqlBabies = "DROP TABLE IF EXISTS " + TABLE_BABIES;
-        db.execSQL(sqlBabies);
-
+    public void onUpgrade(SQLiteDatabase db, ConnectionSource cs, int oldVersion, int newVersion) {
+        try {
+            TableUtils.dropTable(cs, Baby.class, true);
+            onCreate(db, cs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         String sqlBabyDo = "DROP TABLE IF EXISTS " + TABLE_BABY_DO;
         db.execSQL(sqlBabyDo);
 
         onCreate(db);
+    }
+
+    public Dao<Baby, Integer> getBabyDao() throws SQLException {
+        if (babyDao == null) {
+            babyDao = getDao(Baby.class);
+        }
+        return babyDao;
     }
 }

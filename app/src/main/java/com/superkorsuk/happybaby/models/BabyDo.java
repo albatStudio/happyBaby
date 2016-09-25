@@ -11,7 +11,7 @@ import java.util.Locale;
 
 public class BabyDo {
     // common
-    protected long id;
+    protected int id;
     protected String note;
     protected Date issueDate = new Date();
     protected BabyDoType babyDoType;
@@ -20,7 +20,7 @@ public class BabyDo {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

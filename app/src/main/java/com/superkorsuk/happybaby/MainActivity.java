@@ -141,7 +141,6 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.button_add_baby:
-//                addBabyRandom();
                 addBabyRandomNew();
                 break;
 
@@ -202,19 +201,16 @@ public class MainActivity extends AppCompatActivity
         baby.setBirthday(new Date());
         baby.setGestationPeriod(42, 2);
 
-        long id = babyRepo.add(baby);
+        int result = babyRepo.create(baby);
 
-        // select
-        if (id > 0) {
+        if (result > 0) {
             Toast.makeText(getApplicationContext(), babyName + " was added !", Toast.LENGTH_LONG).show();
 
-            Baby baby1 = babyRepo.find(id);
-            if (baby1 != null) {
-                Log.d("DB", "selected baby is " + baby1.getId() + " : " + baby1.getName());
-            } else {
-                Log.d("DB", "baby not found");
-            }
+            Log.d("DB", "baby added");
+        } else {
+            Log.d("DB", "baby addition was failed");
         }
+
     }
 
     private void addBabyDoRandom() {
