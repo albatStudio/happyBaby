@@ -24,6 +24,17 @@ public class ProfileSelectActivity extends AppCompatActivity {
 
         setSelectProfileEventHandler();
         setNewProfileEventHandler();
+        setSignInEventHandler();
+    }
+
+    private void setSignInEventHandler() {
+        Button btnSignIn = (Button) findViewById(R.id.btn_signin);
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileSelectActivity.this, FirebaseActivity.class));
+            }
+        });
     }
 
     private void setNewProfileEventHandler() {
