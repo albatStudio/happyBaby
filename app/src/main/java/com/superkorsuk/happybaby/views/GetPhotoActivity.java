@@ -130,7 +130,7 @@ public class GetPhotoActivity extends AppCompatActivity {
         File directoryHappyBaby = new File(dirPath);
 
         if (!directoryHappyBaby.exists()) {
-            boolean result = directoryHappyBaby.mkdir();
+            boolean result = directoryHappyBaby.mkdir(); 
 
             Log.d("Image", dirPath );
             Log.d("Image", "디렉토리 생성? " + result );
