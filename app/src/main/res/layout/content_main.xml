@@ -12,112 +12,125 @@
     tools:context="com.superkorsuk.happybaby.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="The world could always use more heroes."
-        android:id="@+id/textView2" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Alarm test for one-time"
-        android:id="@+id/buttonAlarm1"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="onClick" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Alarm test for repeat"
-        android:id="@+id/buttonAlarm2"
-        android:layout_below="@+id/buttonAlarm1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="onClick" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Local Notification test"
-        android:id="@+id/buttonNotification"
-        android:layout_below="@+id/buttonAlarm2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="onClick" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="The world could always use more heroes."
+                android:id="@+id/textView2" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go to Chart Activity"
-        android:id="@+id/buttonChartActivity"
-        android:layout_below="@+id/buttonNotification"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="onClick" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alarm test for one-time"
+                android:id="@+id/buttonAlarm1"
+                android:layout_below="@+id/textView2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="onClick" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test Alert Dialog"
-        android:id="@+id/buttonAlert"
-        android:layout_below="@+id/buttonChartActivity"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="onClick" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alarm test for repeat"
+                android:id="@+id/buttonAlarm2"
+                android:layout_below="@+id/buttonAlarm1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="onClick" />
 
-    <Button
-        android:text="ADD A BABY"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonAlert"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/button_add_baby"
-        android:onClick="onClick" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Local Notification test"
+                android:id="@+id/buttonNotification"
+                android:layout_below="@+id/buttonAlarm2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="onClick" />
 
-    <Button
-        android:text="Go to Baby Basic Info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_add_baby"
-        android:id="@+id/button_goToBabyBasicInfo"
-        android:onClick="onClick"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Go to Chart Activity"
+                android:id="@+id/buttonChartActivity"
+                android:layout_below="@+id/buttonNotification"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="onClick" />
 
-    <Button
-        android:text="GET ALL BABIES"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_get_all_babies"
-        android:layout_below="@+id/button_goToBabyBasicInfo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="onClick"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test Alert Dialog"
+                android:id="@+id/buttonAlert"
+                android:layout_below="@+id/buttonChartActivity"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="onClick" />
 
-    <Button
-        android:text="GET Photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_get_photo"
-        android:layout_below="@+id/button_get_all_babies"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="onClick"/>
+            <Button
+                android:text="ADD A BABY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/buttonAlert"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/button_add_baby"
+                android:onClick="onClick" />
 
-    <fragment
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:name="com.superkorsuk.happybaby.views.ChartFragment"
-        android:id = "@+id/frag_chart"
-        android:layout_below="@+id/button_get_photo"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <Button
+                android:text="Go to DB Test Page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button_add_baby"
+                android:id="@+id/button_goToDBTestPage"
+                android:onClick="onClick"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <Button
+                android:text="GET ALL BABIES"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_get_all_babies"
+                android:layout_below="@+id/button_goToDBTestPage"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="onClick"/>
+
+            <Button
+                android:text="GET Photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_get_photo"
+                android:layout_below="@+id/button_get_all_babies"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="onClick"/>
+
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:name="com.superkorsuk.happybaby.views.ChartFragment"
+                android:id = "@+id/frag_chart"
+                android:layout_below="@+id/button_get_photo"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

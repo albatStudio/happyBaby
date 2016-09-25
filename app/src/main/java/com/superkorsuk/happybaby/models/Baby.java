@@ -12,7 +12,7 @@ public class Baby {
 
     private long id;
     private String name;
-    private Date birthday;
+        private Date birthday;
     private Gender gender;
     private int gestationPeriod;
 
