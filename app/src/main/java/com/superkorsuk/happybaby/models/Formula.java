@@ -7,4 +7,12 @@ package com.superkorsuk.happybaby.models;
 public class Formula extends BabyDo {
 
     public int amount;
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 }

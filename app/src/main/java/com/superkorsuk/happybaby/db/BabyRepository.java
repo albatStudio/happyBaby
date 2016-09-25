@@ -160,6 +160,7 @@ public class BabyRepository implements Repository<Baby> {
 
             baby.setId(Integer.parseInt(cursor.getString(0)));
             baby.setName(cursor.getString(1));
+            // TODO more members
 
             return baby;
         }
