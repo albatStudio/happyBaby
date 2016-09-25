@@ -70,6 +70,20 @@ public class Baby {
         return df.format(birthday);
     }
 
+    public String getBirthDayYear() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy", Locale.getDefault());
+        return df.format(birthday);
+    }
+
+    public String getBirthDayMonth() {
+        SimpleDateFormat df = new SimpleDateFormat("MM", Locale.getDefault());
+        return df.format(birthday);
+    }
+    public String getBirthDayDay() {
+        SimpleDateFormat df = new SimpleDateFormat("dd", Locale.getDefault());
+        return df.format(birthday);
+    }
+
     @Override
     public String toString() {
         return "Baby{" +

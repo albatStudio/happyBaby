@@ -41,17 +41,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:text="아기 정보"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="3" />
 
-            <EditText
+            <ListView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:id="@+id/etBabyBasicInfo" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/lvBabyBasicInfo"/>
+
         </LinearLayout>
     </LinearLayout>
 

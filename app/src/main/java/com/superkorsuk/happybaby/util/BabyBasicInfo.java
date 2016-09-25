@@ -1,22 +1,32 @@
 package com.superkorsuk.happybaby.util;
 
+import android.graphics.drawable.Drawable;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import com.superkorsuk.happybaby.R;
 import com.superkorsuk.happybaby.db.BabyRepository;
 import com.superkorsuk.happybaby.models.Baby;
+import com.superkorsuk.happybaby.models.Gender;
 
 import java.util.List;
 
 public class BabyBasicInfo extends AppCompatActivity {
+
+    private Drawable iconDrawable;
+    private String babyName;
+    private String babyDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +44,6 @@ public class BabyBasicInfo extends AppCompatActivity {
             }
         });
 
-        System.out.println("아기 시작");
         displayBabyBasicInfo();
     }
 
@@ -49,18 +58,52 @@ public class BabyBasicInfo extends AppCompatActivity {
     }
 
     public void displayBabyBasicInfo() {
+
+        // Baby info get
         BabyRepository babyRepo = new BabyRepository(getApplicationContext());
-
-        EditText editText = (EditText) findViewById(R.id.etBabyBasicInfo);
-
         List<Baby> babyList = babyRepo.all();
+        String[] babyInfo = new String[babyList.size()];
 
-        System.out.println("아기 컴컴");
+        // ListView Set
+        ListView listView = (ListView) findViewById(R.id.lvBabyBasicInfo);
+        BabyBasicInfoListViewAdapter adapter = new BabyBasicInfoListViewAdapter();
+        listView.setAdapter(adapter);
+
         for(Baby baby : babyList) {
-            editText.setText(baby.toString());
-            Log.d("Baby_Basic_Info", baby.toString());
-        }
+            Gender gen = baby.getGender();
+            String gender;
 
+            if(gen.equals("MALE")) gender = "아들";
+            else gender = "딸";
+
+            // TODO : 정보 보여주는 것을 방법, 내용 등 고민 필요
+            adapter.addItem(ContextCompat.getDrawable(this, R.drawable.ic_info_black_24dp), baby.getName().toString(), baby.getBirthDayYear().toString() + "/" + baby.getBirthDayMonth().toString() + "/" + baby.getBirthDayDay().toString());
+        }
     }
+
+    public Drawable getIconDrawable() {
+        return iconDrawable;
+    }
+
+    public void setIconDrawable(Drawable iconDrawable) {
+        this.iconDrawable = iconDrawable;
+    }
+
+    public String getBabyName() {
+        return babyName;
+    }
+
+    public void setBabyName(String babyName) {
+        this.babyName = babyName;
+    }
+
+    public String getBabyDay() {
+        return babyDay;
+    }
+
+    public void setBabyDay(String babyDay) {
+        this.babyDay = babyDay;
+    }
+
 
 }
