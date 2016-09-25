@@ -158,11 +158,13 @@ public class MainActivity extends AppCompatActivity
                 }
                 break;
 
-            case R.id.button_get_photo:
+            case R.id.btn_get_photo:
                 Intent intent2 = new Intent(this, GetPhotoActivity.class);
                 startActivity(intent2);
                 break;
-
+            case R.id.btn_firebase_activity:
+                Intent intent3 = new Intent(this, FirebaseActivity.class);
+                startActivity(intent3);
             default:
                 break;
 

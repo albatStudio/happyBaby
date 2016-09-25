@@ -16,6 +16,12 @@
         android:layout_height="match_parent">
 
         <Button
+            android:text="Sign in, Sign up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_signin" />
+
+        <Button
             android:text="John Doe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
