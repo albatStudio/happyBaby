@@ -1,13 +1,11 @@
 package com.superkorsuk.happybaby;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -25,14 +23,12 @@ import android.widget.Toast;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.superkorsuk.happybaby.controllers.AlarmController;
-import com.superkorsuk.happybaby.controllers.NotificationController;
+import com.superkorsuk.happybaby.util.Alarm;
+import com.superkorsuk.happybaby.util.NotificationRegister;
 import com.superkorsuk.happybaby.db.BabyRepository;
 import com.superkorsuk.happybaby.models.*;
-//import com.superkorsuk.happybaby.models.Gender;
 import com.superkorsuk.happybaby.views.*;
 
-import java.net.URI;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -92,7 +88,7 @@ public class MainActivity extends AppCompatActivity
 
 
     public void onClick(View v) {
-        AlarmController alarm = new AlarmController(getApplicationContext());
+        Alarm alarm = new Alarm(getApplicationContext());
 
         switch (v.getId()) {
             case R.id.buttonAlarm1:
@@ -108,7 +104,7 @@ public class MainActivity extends AppCompatActivity
 
                 Log.d("NOTIFICATION", "notification start.");
 
-                NotificationController n = new NotificationController(getApplicationContext());
+                NotificationRegister n = new NotificationRegister(getApplicationContext());
 
                 Intent intent = new Intent(MainActivity.this, GetPhotoActivity.class);
                 PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, (int) System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -318,6 +314,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-        
+
     }
 }
