@@ -14,7 +14,7 @@ public class Baby {
     public static final String TABLE_NAME = "babies";
 
     @DatabaseField(generatedId = true)
-    private long id;
+    private int id;
 
     @DatabaseField(canBeNull = false)
     private String name;
@@ -36,7 +36,7 @@ public class Baby {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -76,10 +76,6 @@ public class Baby {
         this.gestationPeriod = week * 7 + day;
     }
 
-    public String getBirthDayDateTime() {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        return df.format(birthday);
-    }
 
     public String getBirthDayYear() {
 
@@ -100,12 +96,17 @@ public class Baby {
         return cal;
     }
 
+    public String getBirthDayToString() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return df.format(birthday);
+    }
+
     @Override
     public String toString() {
         return "Baby{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", birthday=" + this.getBirthDayDateTime() +
+                ", birthday=" + this.getBirthDayToString() +
                 ", gender=" + gender +
                 ", gestationPeriod=" + gestationPeriod +
                 '}';

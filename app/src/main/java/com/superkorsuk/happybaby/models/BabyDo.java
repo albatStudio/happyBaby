@@ -1,20 +1,56 @@
 package com.superkorsuk.happybaby.models;
 
+import com.j256.ormlite.field.DataType;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by Luke on 2016-09-22.
- */
-
+@DatabaseTable(tableName = BabyDo.TABLE_NAME)
 public class BabyDo {
+    public static final String TABLE_NAME = "baby_do";
+
     // common
-    protected int id;
-    protected String note;
-    protected Date issueDate = new Date();
-    protected BabyDoType babyDoType;
+    @DatabaseField(generatedId = true)
+    private int id;
+
+    @DatabaseField(dataType = DataType.LONG_STRING)
+    private String note;
+
+    @DatabaseField(dataType = DataType.DATE_STRING, format = "yyyy-MM-dd HH:mm:ss")
+    private Date issueDate = new Date();
+
+    @DatabaseField(dataType = DataType.ENUM_INTEGER)
+    private BabyDoType babyDoType;
+
+    // for formula (분유)
+    @DatabaseField
+    private int amount;
+
+    // for breast milk (모유)
+    @DatabaseField
+    private int amountLeft;
+
+    @DatabaseField
+    private int amountRight;
+
+    // for poop (대변)
+    @DatabaseField(dataType = DataType.ENUM_INTEGER)
+    private PoopAmount amountPoop;
+
+    @DatabaseField(dataType = DataType.ENUM_INTEGER)
+    private PoopColor color;
+
+    // for sleep (수면)
+    @DatabaseField(dataType = DataType.DATE_STRING, format = "yyyy-MM-dd HH:mm:ss")
+    private Date startTime;
+
+    @DatabaseField(dataType = DataType.DATE_STRING, format = "yyyy-MM-dd HH:mm:ss")
+    private Date endTime;
+
 
     public long getId() {
         return id;
@@ -32,17 +68,76 @@ public class BabyDo {
         this.issueDate = issueDate;
     }
 
-    public String getIssueDateToDateTime() {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        return df.format(issueDate);
-    }
-
     public BabyDoType getBabyDoType() {
         return babyDoType;
     }
 
     public void setBabyDoType(BabyDoType babyDoType) {
         this.babyDoType = babyDoType;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public int getAmountLeft() {
+        return amountLeft;
+    }
+
+    public void setAmountLeft(int amountLeft) {
+        this.amountLeft = amountLeft;
+    }
+
+    public int getAmountRight() {
+        return amountRight;
+    }
+
+    public void setAmountRight(int amountRight) {
+        this.amountRight = amountRight;
+    }
+
+    public PoopAmount getAmountPoop() {
+        return amountPoop;
+    }
+
+    public void setAmountPoop(PoopAmount amountPoop) {
+        this.amountPoop = amountPoop;
+    }
+
+    public PoopColor getColor() {
+        return color;
+    }
+
+    public void setColor(PoopColor color) {
+        this.color = color;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     public Calendar getDateCalendar() {
@@ -52,12 +147,13 @@ public class BabyDo {
         return cal;
     }
 
-    public String getNote() {
-        return note;
+    public String getIssueDateToString() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return df.format(issueDate);
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public int getSleepDuration() {
+        return endTime.compareTo(startTime);
     }
 
 

@@ -216,12 +216,14 @@ public class MainActivity extends AppCompatActivity
     private void addBabyDoRandom() {
         BabyDoRepository doRepo = new BabyDoRepository(getApplicationContext());
 
+        BabyDo babyDo = new BabyDo();
         int amount = (int)(Math.random() * 150);
-        Formula formula = new Formula();
-        formula.setAmount(amount);
-        formula.setBabyDoType(BabyDoType.FORMULA);
+        babyDo.setAmount(amount);
+        babyDo.setIssueDate(new Date());
+        babyDo.setNote("Good child.");
+        babyDo.setBabyDoType(BabyDoType.FORMULA);
 
-        long id = doRepo.add(formula);
+        int id = doRepo.create(babyDo);
         if (id > 0) {
             Toast.makeText(getApplicationContext(), "baby drank formula : " + amount + "ml", Toast.LENGTH_LONG).show();
         } else {

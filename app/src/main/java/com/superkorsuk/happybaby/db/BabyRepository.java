@@ -1,16 +1,10 @@
 package com.superkorsuk.happybaby.db;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-
 import com.j256.ormlite.dao.Dao;
 import com.superkorsuk.happybaby.models.Baby;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class BabyRepository implements Repository<Baby> {
@@ -42,7 +36,7 @@ public class BabyRepository implements Repository<Baby> {
         }
     }
 
-
+    @Override
     public void delete(Baby item) {
         try {
              openHelper.getBabyDao().delete(item);
@@ -51,10 +45,7 @@ public class BabyRepository implements Repository<Baby> {
         }
     }
 
-
-
     public Baby find(int id) {
-
         Baby baby = null;
         try {
             baby = openHelper.getBabyDao().queryForId(id);
