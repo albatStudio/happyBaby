@@ -4,9 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
 import com.superkorsuk.happybaby.models.BabyDo;
 import com.superkorsuk.happybaby.models.BabyDoType;
 import com.superkorsuk.happybaby.models.BreastMilk;
@@ -14,8 +11,12 @@ import com.superkorsuk.happybaby.models.Formula;
 import com.superkorsuk.happybaby.models.Poop;
 import com.superkorsuk.happybaby.models.Sleep;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class BabyDoRepository implements Repository<BabyDo> {
 
@@ -130,8 +131,16 @@ public class BabyDoRepository implements Repository<BabyDo> {
             BabyDo babyDo = new BabyDo();
 
             babyDo.setId(Integer.parseInt(cursor.getString(0)));
-            // issue_date
-            // do_type
+            String issue_date = cursor.getString(1);
+            Date d = new Date();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            try {
+                d = df.parse(issue_date);
+                babyDo.setIssueDate(d);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
             babyDo.setNote(cursor.getString(2));
 
             // TODO more members

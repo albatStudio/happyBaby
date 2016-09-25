@@ -45,14 +45,6 @@ public class BabyDo {
         this.babyDoType = babyDoType;
     }
 
-    public Date getDate() {
-        return issueDate;
-    }
-
-    public void setDate(Date date) {
-        this.issueDate = date;
-    }
-
     public Calendar getDateCalendar() {
         Calendar cal = Calendar.getInstance(Locale.getDefault());
         cal.setTime(issueDate);
