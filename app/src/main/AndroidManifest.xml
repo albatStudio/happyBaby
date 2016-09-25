@@ -45,8 +45,8 @@
         <activity android:name=".views.ChartActivity" />
         <activity android:name=".views.GetPhotoActivity" />
         <activity
-            android:name=".controllers.BabyBasicInfoController"
-            android:label="@string/title_activity_baby_basic_info_controller"
+            android:name=".util.BabyBasicInfo"
+            android:label="@string/title_activity_baby_basic_info"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
