@@ -24,6 +24,7 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.superkorsuk.happybaby.util.Alarm;
+import com.superkorsuk.happybaby.util.BabyBasicInfo;
 import com.superkorsuk.happybaby.util.NotificationRegister;
 import com.superkorsuk.happybaby.db.BabyRepository;
 import com.superkorsuk.happybaby.models.*;
@@ -143,8 +144,8 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.button_goToDBTestPage:
-                Intent intentDBTest = new Intent(getApplicationContext(), DBTest.class);
-                startActivity(intentDBTest);
+                Intent intentBabyBasicInfo = new Intent(getApplicationContext(), BabyBasicInfo.class);
+                startActivity(intentBabyBasicInfo);
                 break;
 
             case R.id.button_get_all_babies:
