@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity
                 addBabyRandomNew();
                 break;
 
-            case R.id.button_goToDBTestPage:
+            case R.id.button_goToBabyBasicInfo:
                 Intent intentBabyBasicInfo = new Intent(getApplicationContext(), BabyBasicInfo.class);
                 startActivity(intentBabyBasicInfo);
                 break;
