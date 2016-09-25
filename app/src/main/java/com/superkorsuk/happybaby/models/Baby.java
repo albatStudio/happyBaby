@@ -1,6 +1,7 @@
 package com.superkorsuk.happybaby.models;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -68,6 +69,13 @@ public class Baby {
     public String getBirthDayDateTime() {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         return df.format(birthday);
+    }
+
+    public Calendar getBirthDayCalendar() {
+        Calendar cal = Calendar.getInstance(Locale.getDefault());
+        cal.setTime(birthday);
+
+        return cal;
     }
 
     @Override
