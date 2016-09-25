@@ -144,7 +144,9 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.button_goToBabyBasicInfo:
-                Intent intentBabyBasicInfo = new Intent(getApplicationContext(), BabyBasicInfo.class);
+//                Intent intentBabyBasicInfo = new Intent(getApplicationContext(), BabyBasicInfo.class);
+                Intent intentBabyBasicInfo = new Intent(this, BabyBasicInfo.class);
+
                 startActivity(intentBabyBasicInfo);
                 break;
 
