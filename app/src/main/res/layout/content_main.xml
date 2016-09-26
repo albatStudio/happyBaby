@@ -128,12 +128,22 @@
                 android:layout_alignParentStart="true"
                 android:onClick="onClick"/>
 
+            <Button
+                android:text="Share the app"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_share"
+                android:layout_below="@+id/btn_firebase_activity"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="onClick"/>
+
             <fragment
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:name="com.superkorsuk.happybaby.views.ChartFragment"
                 android:id = "@+id/frag_chart"
-                android:layout_below="@+id/btn_firebase_activity"
+                android:layout_below="@+id/btn_share"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"

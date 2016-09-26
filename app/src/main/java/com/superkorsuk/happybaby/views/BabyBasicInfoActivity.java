@@ -62,6 +62,13 @@ public class BabyBasicInfoActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        displayBabyBasicInfo();
+    }
+
     public void displayBabyBasicInfo() {
 
         // Baby info get

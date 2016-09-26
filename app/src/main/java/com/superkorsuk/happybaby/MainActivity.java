@@ -25,6 +25,7 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.superkorsuk.happybaby.db.BabyDoRepository;
 import com.superkorsuk.happybaby.util.Alarm;
+import com.superkorsuk.happybaby.util.Share;
 import com.superkorsuk.happybaby.views.BabyBasicInfoActivity;
 import com.superkorsuk.happybaby.util.NotificationRegister;
 import com.superkorsuk.happybaby.db.BabyRepository;
@@ -165,6 +166,10 @@ public class MainActivity extends AppCompatActivity
             case R.id.btn_firebase_activity:
                 Intent intent3 = new Intent(this, FirebaseActivity.class);
                 startActivity(intent3);
+                break;
+            case R.id.btn_share:
+                Share.sendShare(this);
+
             default:
                 break;
 

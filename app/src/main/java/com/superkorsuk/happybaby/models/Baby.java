@@ -56,6 +56,10 @@ public class Baby {
         this.birthday = birthday;
     }
 
+    public void setBirthday(Calendar birthday) {
+        this.birthday = birthday.getTime();
+    }
+
     public Gender getGender() {
         return gender;
     }
