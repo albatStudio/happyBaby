@@ -17,14 +17,18 @@ public class BabyDo {
     @DatabaseField(generatedId = true)
     private int id;
 
+    @DatabaseField(indexName = "baby_do_idx1")
+    private int babyId;
+
+    @DatabaseField(dataType = DataType.ENUM_INTEGER, indexName = "baby_do_idx1")
+    private BabyDoType babyDoType;
+
+    @DatabaseField(dataType = DataType.DATE_STRING, format = "yyyy-MM-dd HH:mm:ss", indexName = "baby_do_idx1")
+    private Date issueDate = new Date();
+
     @DatabaseField(dataType = DataType.LONG_STRING)
     private String note;
 
-    @DatabaseField(dataType = DataType.DATE_STRING, format = "yyyy-MM-dd HH:mm:ss")
-    private Date issueDate = new Date();
-
-    @DatabaseField(dataType = DataType.ENUM_INTEGER)
-    private BabyDoType babyDoType;
 
     // for formula (분유)
     @DatabaseField
@@ -58,6 +62,14 @@ public class BabyDo {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getBabyId() {
+        return babyId;
+    }
+
+    public void setBabyId(int babyId) {
+        this.babyId = babyId;
     }
 
     public Date getIssueDate() {

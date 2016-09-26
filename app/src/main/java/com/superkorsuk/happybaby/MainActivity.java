@@ -220,12 +220,10 @@ public class MainActivity extends AppCompatActivity
     private void addBabyDoRandom() {
         BabyDoRepository doRepo = new BabyDoRepository(getApplicationContext());
 
-        BabyDo babyDo = new BabyDo();
         int amount = (int)(Math.random() * 150);
-        babyDo.setAmount(amount);
-        babyDo.setIssueDate(new Date());
-        babyDo.setNote("Good child.");
-        babyDo.setBabyDoType(BabyDoType.FORMULA);
+        int babyId = 1;
+
+        BabyDo babyDo = BabyDoFactory.getFormula(babyId, new Date(), amount, "Good child.");
 
         int id = doRepo.create(babyDo);
         if (id > 0) {
