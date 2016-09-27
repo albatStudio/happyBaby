@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class DBOpenHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "happybaby.db";
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 3;
 
     private Dao<Baby, Integer> babyDao = null;
     private Dao<BabyDo, Integer> babyDoDao = null;

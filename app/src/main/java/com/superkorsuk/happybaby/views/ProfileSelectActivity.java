@@ -1,6 +1,8 @@
 package com.superkorsuk.happybaby.views;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -53,9 +55,19 @@ public class ProfileSelectActivity extends AppCompatActivity {
         btnSelectProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int selectedBabyId = 1;
+                setSelectedBaby(selectedBabyId);
+
                 startActivity(new Intent(ProfileSelectActivity.this, MainActivity.class));
             }
         });
+    }
+
+    private void setSelectedBaby(int babyId) {
+        SharedPreferences pref = getSharedPreferences("status", 0);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putInt("selected_baby_id", babyId);
+        editor.commit();
     }
 
 }
