@@ -169,6 +169,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.btn_share:
                 Share.sendShare(this);
+            case R.id.korsuk :
+                Intent intent4 = new Intent(this, Main2Activity.class);
+                startActivity(intent4);
 
             default:
                 break;

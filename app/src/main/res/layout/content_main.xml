@@ -138,6 +138,16 @@
                 android:layout_alignParentStart="true"
                 android:onClick="onClick"/>
 
+            <Button
+                android:text="Go korsuk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/korsuk"
+                android:layout_below="@+id/btn_share"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="onClick"/>
+
             <fragment
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
