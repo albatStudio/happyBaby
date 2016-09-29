@@ -1,0 +1,12 @@
+<tabs>
+    <tab
+        id="@+id/tab_today"
+        title="Today" />
+    <tab
+        id="@+id/tab_do"
+        title="Do" />
+    <tab
+        id="@+id/tab_statistics"
+        title="Stats" />
+
+</tabs>

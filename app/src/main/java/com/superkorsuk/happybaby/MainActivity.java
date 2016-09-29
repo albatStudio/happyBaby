@@ -169,6 +169,11 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.btn_share:
                 Share.sendShare(this);
+                break;
+
+            case R.id.button_go_to_today:
+                startActivity(new Intent(MainActivity.this, TodayActivity.class));
+                break;
 
             default:
                 break;
