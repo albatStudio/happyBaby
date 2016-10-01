@@ -1,6 +1,8 @@
 package com.superkorsuk.happybaby.util;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by 1001078 on 2016. 9. 20..
@@ -44,5 +46,13 @@ public class DateAndTime {
         Calendar now = Calendar.getInstance();
         now.add(Calendar.DATE, daysToAdd);
         return now;
+    }
+
+    public static Calendar getDate(int year, int month, int date, int hourOfDay, int minute) {
+        Calendar cal = Calendar.getInstance(Locale.getDefault());
+        cal.set(year, month - 1, date, hourOfDay, minute, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+
+        return cal;
     }
 }

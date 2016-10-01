@@ -19,13 +19,15 @@ public class Baby {
     @DatabaseField(canBeNull = false)
     private String name;
 
-    @DatabaseField(dataType = DataType.DATE_STRING, format = "yyyy-MM-dd HH:mm:ss", canBeNull = false)
+    @DatabaseField(dataType = DataType.DATE, canBeNull = false)
     private Date birthday;
 
     @DatabaseField(dataType = DataType.ENUM_INTEGER)
     private Gender gender;
 
-    private int gestationPeriod;
+    private int gestationPeriod; // date
+    private double birthWeight; // kg
+
 
     public Baby() {
         birthday = new Date();
@@ -80,6 +82,13 @@ public class Baby {
         this.gestationPeriod = week * 7 + day;
     }
 
+    public double getBirthWeight() {
+        return birthWeight;
+    }
+
+    public void setBirthWeight(double birthWeight) {
+        this.birthWeight = birthWeight;
+    }
 
     public String getBirthDayYear() {
 
@@ -101,7 +110,7 @@ public class Baby {
     }
 
     public String getBirthDayToString() {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
         return df.format(birthday);
     }
 

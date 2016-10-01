@@ -17,29 +17,27 @@ public class BabyDo {
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField(indexName = "baby_do_idx1")
+    @DatabaseField(indexName = "baby_do_idx1", canBeNull = false)
     private int babyId;
 
     @DatabaseField(dataType = DataType.ENUM_INTEGER, indexName = "baby_do_idx1")
     private BabyDoType babyDoType;
 
-    @DatabaseField(dataType = DataType.DATE_STRING, format = "yyyy-MM-dd HH:mm:ss", indexName = "baby_do_idx1")
+    @DatabaseField(dataType = DataType.DATE, indexName = "baby_do_idx1")
     private Date issueDate = new Date();
 
     @DatabaseField(dataType = DataType.LONG_STRING)
     private String note;
 
 
-    // for formula (분유)
+    // 수유 - 용량 (분유, 유축한 모유)
     @DatabaseField
     private int amount;
 
-    // for breast milk (모유)
-    @DatabaseField
-    private int amountLeft;
+    // 수유 - 시간. 분단위 (모유)
+    private int breastfeedingLeft;
 
-    @DatabaseField
-    private int amountRight;
+    private int breastfeedingRight;
 
     // for poop (대변)
     @DatabaseField(dataType = DataType.ENUM_INTEGER)
@@ -48,11 +46,11 @@ public class BabyDo {
     @DatabaseField(dataType = DataType.ENUM_INTEGER)
     private PoopColor color;
 
-    // for sleep (수면)
-    @DatabaseField(dataType = DataType.DATE_STRING, format = "yyyy-MM-dd HH:mm:ss")
+    // for duration (수면)
+    @DatabaseField(dataType = DataType.DATE)
     private Date startTime;
 
-    @DatabaseField(dataType = DataType.DATE_STRING, format = "yyyy-MM-dd HH:mm:ss")
+    @DatabaseField(dataType = DataType.DATE)
     private Date endTime;
 
 
@@ -104,22 +102,6 @@ public class BabyDo {
         this.amount = amount;
     }
 
-    public int getAmountLeft() {
-        return amountLeft;
-    }
-
-    public void setAmountLeft(int amountLeft) {
-        this.amountLeft = amountLeft;
-    }
-
-    public int getAmountRight() {
-        return amountRight;
-    }
-
-    public void setAmountRight(int amountRight) {
-        this.amountRight = amountRight;
-    }
-
     public PoopAmount getAmountPoop() {
         return amountPoop;
     }
@@ -152,6 +134,22 @@ public class BabyDo {
         this.endTime = endTime;
     }
 
+    public int getBreastfeedingLeft() {
+        return breastfeedingLeft;
+    }
+
+    public void setBreastfeedingLeft(int breastfeedingLeft) {
+        this.breastfeedingLeft = breastfeedingLeft;
+    }
+
+    public int getBreastfeedingRight() {
+        return breastfeedingRight;
+    }
+
+    public void setBreastfeedingRight(int breastfeedingRight) {
+        this.breastfeedingRight = breastfeedingRight;
+    }
+
     public Calendar getDateCalendar() {
         Calendar cal = Calendar.getInstance(Locale.getDefault());
         cal.setTime(issueDate);
@@ -160,7 +158,7 @@ public class BabyDo {
     }
 
     public String getIssueDateToString() {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
         return df.format(issueDate);
     }
 
