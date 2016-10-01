@@ -8,10 +8,12 @@
     tools:context="com.superkorsuk.happybaby.views.TodayActivity">
 
     <FrameLayout
-        android:id="@+id/contentContainer"
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_bar" />
+        android:layout_above="@+id/bottom_bar">
+
+    </FrameLayout>
 
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottom_bar"

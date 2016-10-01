@@ -1,13 +1,11 @@
 package com.superkorsuk.happybaby.views;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.superkorsuk.happybaby.MainActivity;
 import com.superkorsuk.happybaby.R;
 
 public class SplashActivity extends Activity {
@@ -26,7 +24,7 @@ public class SplashActivity extends Activity {
                 @Override
                 public void run() {
                     overridePendingTransition(0, android.R.anim.fade_in);
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    startActivity(new Intent(SplashActivity.this, TodayActivity.class));
                     finish();
                 }
             }, SPLASH_TIME);

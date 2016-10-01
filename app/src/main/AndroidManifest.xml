@@ -46,7 +46,6 @@
             android:name=".views.BabyBasicInfoActivity"
             android:label="@string/title_activity_baby_basic_info"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".views.GetPhotoActivity" />
         <activity android:name=".views.FirebaseActivity" />
         <activity android:name=".views.BabyAddActivity" />
         <activity android:name=".views.TodayActivity"></activity>
