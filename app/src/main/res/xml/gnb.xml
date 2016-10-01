@@ -8,6 +8,11 @@
         icon="@drawable/ic_note_add_black_24dp"
         title="Baby Do" />
     <tab
+        id="@+id/tab_growth"
+        icon="@drawable/ic_accessibility_black_24dp"
+        title="Growth" />
+
+    <tab
         id="@+id/tab_statistics"
         icon="@drawable/ic_show_chart_black_24dp"
         title="Stats" />
