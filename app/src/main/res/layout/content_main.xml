@@ -145,6 +145,14 @@
                 android:id="@+id/button_go_to_today"
                 android:onClick="onClick" />
 
+            <Button
+                android:text="Go to Statistics Page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button_go_to_today"
+                android:id="@+id/btn_statistics_calendar"
+                android:onClick="onClick" />
+
             <fragment
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

@@ -48,7 +48,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".views.FirebaseActivity" />
         <activity android:name=".views.BabyAddActivity" />
-        <activity android:name=".views.TodayActivity"></activity>
+        <activity android:name=".views.TodayActivity" />
+        <activity android:name=".views.StatisticsCalendarActivity"></activity>
     </application>
 
 </manifest>

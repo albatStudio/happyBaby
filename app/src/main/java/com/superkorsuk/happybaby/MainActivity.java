@@ -175,6 +175,10 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(MainActivity.this, TodayActivity.class));
                 break;
 
+            case R.id.btn_statistics_calendar:
+                startActivity(new Intent(MainActivity.this, StatisticsCalendarActivity.class));
+                break;
+
             default:
                 break;
 
