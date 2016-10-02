@@ -12,10 +12,16 @@ import com.superkorsuk.happybaby.adapters.ExpandableListViewAdapter;
 import com.superkorsuk.happybaby.db.BabyDoRepository;
 import com.superkorsuk.happybaby.db.BabyRepository;
 import com.superkorsuk.happybaby.models.BabyDo;
+import com.superkorsuk.happybaby.models.BabyDoType;
+import com.superkorsuk.happybaby.models.PoopAmount;
+import com.superkorsuk.happybaby.models.PoopColor;
+import com.superkorsuk.happybaby.util.DateAndTime;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import me.nlmartian.silkcal.DatePickerController;
 import me.nlmartian.silkcal.DayPickerView;
@@ -57,17 +63,22 @@ public class StatisticsCalendarActivity extends AppCompatActivity implements Dat
 
     @Override
     public void onDayOfMonthSelected(int year, int month, int day) {
+        month = month + 1;
+
+        System.out.println("Fjdkfjdkfj");
+        Log.d("onDayOfMonthSelected", "확인용1 : " );
+
         System.out.println(" year=" + year + " month=" + month + " day=" + day);
         selectedDay = year + "/" + month + "/" + day;
         selectedDayTextView.setText(selectedDay);
+
 
 /*        babyDoFormulaShow(year, month, day);
         babyDoMilkShow(year, month, day);
         babyDoPoopShow(year, month, day);
         babyDoSellpaShow(year, month, day);*/
 
-        recyclerview = (RecyclerView) findViewById(R.id.LV_statistics_selected_day);
-        recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
 
 
 /*        // 날짜 선택시 list view에 데이타를 넣어주는 example
@@ -106,35 +117,28 @@ public class StatisticsCalendarActivity extends AppCompatActivity implements Dat
         List<ExpandableListViewAdapter.Item> selectedDayData = new ArrayList<>();
         BabyDoRepository repo = new BabyDoRepository(getApplicationContext());
 
-        //TODO :: FORMULA, BREAST_MILK, POOP, SLEEP 4가지 항목에 대해 특정일 리스트가 필요
-//        List<BabyDoFormula> babyDoListFormula = repo.getAllFormulaAt(BABY_ID, year, month, day);
-//        List<BabyDoMilk> babyDoListMilk = repo.getAllMilkAt(BABY_ID, year, month, day);
-//        List<BabyDoPoop> babyDoListPoop = repo.getAllPoopAt(BABY_ID, year, month, day);
-//        List<BabyDoSleep> babyDoListSleep = repo.getAllSleepAt(BABY_ID, year, month, day);
+        //TODO :: 실 배포시 아래 날짜 절대값을 변수로 변경 필요
+        List<BabyDo> babyDoList = repo.getBabyDoListAt(BABY_ID, 2016, 6, 19, BabyDoType.BREAST_MILK);
 
-/*        selectedDayData.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.HEADER, "수유"));
-        for(BabyDoFormula formula : babyDoListFormula) {
-            int amount, breastfeedingLeft, breastfeedingRight;
-            Date issueDate;
-            String note;
+        selectedDayData.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.HEADER, "응가"));
 
-            issueDate = formula.getIssueDate();
-            amount = formula.getAmount();
-            breastfeedingLeft = formula.getBreastfeedingLeft();
-            breastfeedingRight = formula.getBreastfeedingRight();
+        if(babyDoList.size() < 1) {
+            selectedDayData.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "기록 없음"));
+        }
 
-            String data = "" + issueDate + "";
-            selectedDayData.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, data));
-        }*/
+        for(BabyDo milk : babyDoList) {
+            Date issueDate = milk.getIssueDate();
+            int amount = milk.getAmount();
+            String note = milk.getNote();
 
+            String time = "" + issueDate;
+            String poopData = "" + time.substring(12,19) + "  양:" + amount + "  기록:" + note;
+
+            selectedDayData.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, poopData));
+        }
+        recyclerview = (RecyclerView) findViewById(R.id.LV_statistics_selected_day);
+        recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerview.setAdapter(new ExpandableListViewAdapter(selectedDayData));
     }
 
-    public void babyDoMilkShow(int year, int month, int day) {
-    }
-
-    public void babyDoPoopShow(int year, int month, int day) {
-    }
-
-    public void babyDoSellpaShow(int year, int month, int day) {
-    }
 }
