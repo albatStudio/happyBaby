@@ -105,7 +105,7 @@ public class BabyDoFactory {
         BabyDo bd = new BabyDo();
         bd.setBabyDoType(BabyDoType.SLEEP);
         bd.setBabyId(babyId);
-        bd.setIssueDate(new Date());
+        bd.setIssueDate(startTime);
         bd.setNote(note);
 
         bd.setStartTime(startTime);
