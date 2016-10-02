@@ -25,7 +25,10 @@ public class Baby {
     @DatabaseField(dataType = DataType.ENUM_INTEGER)
     private Gender gender;
 
+    @DatabaseField
     private int gestationPeriod; // date
+
+    @DatabaseField
     private double birthWeight; // kg
 
 
