@@ -99,5 +99,17 @@ public class RepositoryTest {
         assertEquals(35, duration);
     }
 
+    @Test
+    public void getLastPoop() {
+        Context context = mActivityRule.getActivity().getApplicationContext();
+        BabyDoRepository repo = new BabyDoRepository(context);
+
+        BabyDo lastPoop = repo.getLastPoop(BABY_ID);
+
+        assertEquals(6, lastPoop.getId());
+
+
+    }
+
 
 }

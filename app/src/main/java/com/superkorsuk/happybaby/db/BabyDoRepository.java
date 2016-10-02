@@ -174,4 +174,23 @@ public class BabyDoRepository implements Repository<BabyDo> {
 
         return 0;
     }
+
+    public BabyDo getLastPoop(int babyId) {
+
+        BabyDo babyDo = null;
+
+        try {
+            babyDo = openHelper.getBabyDoDao().queryBuilder()
+                    .orderBy(BabyDo.ISSUE_DATE_FIELD_NAME, false)
+                    .where()
+                    .eq(BabyDo.BABY_ID_FIELD_NAME, babyId)
+                    .and()
+                    .eq(BabyDo.BABY_DO_TYPE_FIELD_NAME, BabyDoType.POOP)
+                    .queryForFirst();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return babyDo;
+    }
 }
