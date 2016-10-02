@@ -12,6 +12,9 @@ import java.util.Locale;
 @DatabaseTable(tableName = BabyDo.TABLE_NAME)
 public class BabyDo {
     public static final String TABLE_NAME = "baby_do";
+    public static final String BABY_ID_FIELD_NAME = "babyId";
+    public static final String ISSUE_DATE_FIELD_NAME = "issueDate";
+    public static final String BABY_DO_TYPE_FIELD_NAME = "babyDoType";
 
     // common
     @DatabaseField(generatedId = true)
