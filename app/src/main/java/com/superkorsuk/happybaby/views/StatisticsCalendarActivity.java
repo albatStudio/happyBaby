@@ -61,28 +61,34 @@ public class StatisticsCalendarActivity extends AppCompatActivity implements Dat
 
         recyclerview = (RecyclerView) findViewById(R.id.LV_statistics_selected_day);
         recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        List<ExpandableListViewAdapter.Item> data = new ArrayList<>();
 
-        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.HEADER, "Fruits"));
-        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Apple"));
-        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Orange"));
-        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Banana"));
-        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.HEADER, "Cars"));
-        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Audi"));
-        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Aston Martin"));
-        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "BMW"));
-        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Cadillac"));
+        List<ExpandableListViewAdapter.Item> selectedDayData = new ArrayList<>();
 
-        ExpandableListViewAdapter.Item places = new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.HEADER, "Places");
-        places.invisibleChildren = new ArrayList<>();
-        places.invisibleChildren.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Kerala"));
-        places.invisibleChildren.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Tamil Nadu"));
-        places.invisibleChildren.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Karnataka"));
-        places.invisibleChildren.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Maharashtra"));
+        // for breastfeeding (수유)
+        ExpandableListViewAdapter.Item breastfeeding = new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.HEADER, "수유");
+        breastfeeding.invisibleChildren = new ArrayList<>();
+        breastfeeding.invisibleChildren.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "10시 05분: 10ml"));
+        breastfeeding.invisibleChildren.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "16시 30분: 10ml"));
 
-        data.add(places);
+        selectedDayData.add(breastfeeding);
 
-        recyclerview.setAdapter(new ExpandableListViewAdapter(data));
+        // for poop (대변)
+        ExpandableListViewAdapter.Item poop = new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.HEADER, "응가");
+        poop.invisibleChildren = new ArrayList<>();
+        poop.invisibleChildren.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "07시 13분: 일반똥"));
+        poop.invisibleChildren.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "13시 45분: 설사"));
+
+        selectedDayData.add(poop);
+
+        // for duration (수면)
+        ExpandableListViewAdapter.Item duration = new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.HEADER, "수면");
+        duration.invisibleChildren = new ArrayList<>();
+        duration.invisibleChildren.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "22:10 ~ 07:43"));
+        duration.invisibleChildren.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "09:32 ~ 11:12"));
+
+        selectedDayData.add(duration);
+
+        recyclerview.setAdapter(new ExpandableListViewAdapter(selectedDayData));
     }
 
     @Override
