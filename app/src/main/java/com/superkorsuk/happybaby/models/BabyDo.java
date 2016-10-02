@@ -35,12 +35,14 @@ public class BabyDo {
 
     // 수유 - 용량 (분유, 유축한 모유)
     @DatabaseField
-    private int amount;
+    private int amount = 0;
 
     // 수유 - 시간. 분단위 (모유)
-    private int breastfeedingLeft;
+    @DatabaseField
+    private int breastfeedingLeft = 0;
 
-    private int breastfeedingRight;
+    @DatabaseField
+    private int breastfeedingRight = 0;
 
     // for poop (대변)
     @DatabaseField(dataType = DataType.ENUM_INTEGER)

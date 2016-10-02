@@ -18,11 +18,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class RepositoryTest {
     private MainActivity activity;
+    private static final int BABY_ID = 1;
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
@@ -37,10 +39,10 @@ public class RepositoryTest {
         Context context = mActivityRule.getActivity().getApplicationContext();
         BabyDoRepository repo = new BabyDoRepository(context);
 
-        List<BabyDo> babyDoList = repo.all(1);
+        List<BabyDo> babyDoList = repo.all(BABY_ID);
         List<BabyDo> babyDoList2 = repo.all(2);
 
-        Log.d("test", "size is " + babyDoList.size() + ", " + babyDoList2.size());
+        Log.d("UNIT_TEST", "size is " + babyDoList.size() + ", " + babyDoList2.size());
         assertTrue(babyDoList.size() > babyDoList2.size());
     }
 
@@ -50,13 +52,13 @@ public class RepositoryTest {
         BabyDoRepository repo = new BabyDoRepository(context);
 
         Map<String, Object> where = new HashMap<>();
-        where.put("babyId", 1);
+        where.put("babyId", BABY_ID);
         where.put("babyDoType", BabyDoType.POOP);
 
         List<BabyDo> babyDoList = repo.queryFor(where);
 
 
-        Log.d("test", "poops size : " + babyDoList.size());
+        Log.d("UNIT_TEST", "poops size : " + babyDoList.size());
         assertTrue(babyDoList.size() > 0);
     }
 
@@ -65,11 +67,36 @@ public class RepositoryTest {
         Context context = mActivityRule.getActivity().getApplicationContext();
         BabyDoRepository repo = new BabyDoRepository(context);
 
-        List<BabyDo> babyDoList = repo.todayBabyDoList(1);
+        List<BabyDo> babyDoList = repo.todayBabyDoList(BABY_ID);
 
 
-        Log.d("test", "poops size : " + babyDoList.size());
-        assertTrue(babyDoList.size() == 14);
+        Log.d("UNIT_TEST", "today count : " + babyDoList.size());
+        assertEquals(14, babyDoList.size());
+    }
+
+    @Test
+    public void getTodayFeedingAmount() {
+
+        Context context = mActivityRule.getActivity().getApplicationContext();
+        BabyDoRepository repo = new BabyDoRepository(context);
+
+        int amount = repo.getFeedingAmountToday(BABY_ID);
+        int amountYesterday = repo.getFeedingAmountYesterday(BABY_ID);
+
+        Log.d("UNIT_TEST", "amount (yesterday, today) is : (" + amountYesterday + ", " + amount + ")");
+        assertEquals(485, amount);
+        assertEquals(365, amountYesterday);
+    }
+
+    @Test
+    public void getTodayFeedingDuration() {
+        Context context = mActivityRule.getActivity().getApplicationContext();
+        BabyDoRepository repo = new BabyDoRepository(context);
+
+        int duration = repo.getFeedingDurationToday(BABY_ID);
+
+        Log.d("UNIT_TEST", "duration is : " + duration);
+        assertEquals(35, duration);
     }
 
 
