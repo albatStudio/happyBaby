@@ -2,15 +2,17 @@ package com.superkorsuk.happybaby.views;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.superkorsuk.happybaby.R;
+import com.superkorsuk.happybaby.adapters.ExpandableListViewAdapter;
 import com.superkorsuk.happybaby.db.BabyDoRepository;
 import com.superkorsuk.happybaby.db.BabyRepository;
-import com.superkorsuk.happybaby.models.BabyDo;
-import com.superkorsuk.happybaby.models.BabyDoFactory;
 
-import org.w3c.dom.Text;
+import java.util.ArrayList;
+import java.util.List;
 
 import me.nlmartian.silkcal.DatePickerController;
 import me.nlmartian.silkcal.DayPickerView;
@@ -21,6 +23,7 @@ public class StatisticsCalendarActivity extends AppCompatActivity implements Dat
     private DayPickerView calendarView;
     private TextView selectedDayTextView;
     private String selectedDay;
+    private RecyclerView recyclerview;
 
     BabyRepository babyRepo;
     BabyDoRepository babyDoRepo;
@@ -51,10 +54,35 @@ public class StatisticsCalendarActivity extends AppCompatActivity implements Dat
         selectedDay = year + "/" + month + "/" + day;
         selectedDayTextView.setText(selectedDay);
 
-        babyDoFormulaShow(year, month, day);
+/*        babyDoFormulaShow(year, month, day);
         babyDoMilkShow(year, month, day);
         babyDoPoopShow(year, month, day);
-        babyDoSellpaShow(year, month, day);
+        babyDoSellpaShow(year, month, day);*/
+
+        recyclerview = (RecyclerView) findViewById(R.id.LV_statistics_selected_day);
+        recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        List<ExpandableListViewAdapter.Item> data = new ArrayList<>();
+
+        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.HEADER, "Fruits"));
+        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Apple"));
+        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Orange"));
+        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Banana"));
+        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.HEADER, "Cars"));
+        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Audi"));
+        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Aston Martin"));
+        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "BMW"));
+        data.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Cadillac"));
+
+        ExpandableListViewAdapter.Item places = new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.HEADER, "Places");
+        places.invisibleChildren = new ArrayList<>();
+        places.invisibleChildren.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Kerala"));
+        places.invisibleChildren.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Tamil Nadu"));
+        places.invisibleChildren.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Karnataka"));
+        places.invisibleChildren.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "Maharashtra"));
+
+        data.add(places);
+
+        recyclerview.setAdapter(new ExpandableListViewAdapter(data));
     }
 
     @Override

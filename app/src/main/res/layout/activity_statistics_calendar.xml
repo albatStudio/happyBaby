@@ -15,17 +15,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <me.nlmartian.silkcal.DayPickerView
-            xmlns:calendar="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/calendar_view"
+        <TextView
+            android:text="선택된 날짜"
             android:layout_width="match_parent"
-            android:layout_height="260dp"
-            android:background="@android:color/white"
-            calendar:drawRoundRect="false"/>
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp"
+            android:id="@+id/ffd" />
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <me.nlmartian.silkcal.DayPickerView
+                xmlns:calendar="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/calendar_view"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:background="@android:color/white"
+                calendar:drawRoundRect="false"/>
 
             <TextView
                 android:text="선택된 날짜"
@@ -33,8 +41,14 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="30dp"
                 android:id="@+id/tv_selected_day" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/LV_statistics_selected_day"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
         </LinearLayout>
     </LinearLayout>
-
 
 </RelativeLayout>
