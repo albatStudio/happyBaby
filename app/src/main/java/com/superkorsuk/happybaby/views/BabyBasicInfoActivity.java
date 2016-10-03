@@ -77,7 +77,7 @@ public class BabyBasicInfoActivity extends AppCompatActivity {
         String[] babyInfo = new String[babyList.size()];
 
         // ListView Set
-        ListView listView = (ListView) findViewById(R.id.lvBabyBasicInfo);
+        ListView listView = (ListView) findViewById(R.id.lvTodayDo);
         BabyBasicInfoListViewAdapter adapter = new BabyBasicInfoListViewAdapter();
         listView.setAdapter(adapter);
 
