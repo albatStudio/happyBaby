@@ -2,27 +2,26 @@ package com.superkorsuk.happybaby.fragments;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.superkorsuk.happybaby.R;
-import com.superkorsuk.happybaby.adapters.ExpandableListViewAdapter;
+import com.superkorsuk.happybaby.adapters.TodayDoListViewAdapter;
 import com.superkorsuk.happybaby.db.BabyDoRepository;
 import com.superkorsuk.happybaby.db.BabyRepository;
 import com.superkorsuk.happybaby.models.Baby;
 import com.superkorsuk.happybaby.models.BabyDo;
-import com.superkorsuk.happybaby.models.BabyDoType;
 import com.superkorsuk.happybaby.util.DateAndTime;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -66,11 +65,57 @@ public class TodayFragment extends BaseFragment {
 
     private void initUI(View view) {
         initUISummary(view);
+        initUITodayDoList(view);
+    }
+
+    private void initUITodayDoList(View view) {
+        BabyDoRepository repo = new BabyDoRepository(view.getContext());
+        List<BabyDo> babyDoList = repo.getBabyDoListAt(babyId, 2016, 6, 20);
+
+        // ListView Set
+        ListView listView = (ListView) view.findViewById(R.id.today_babydo_list);
+        TodayDoListViewAdapter adapter = new TodayDoListViewAdapter();
+        listView.setAdapter(adapter);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
 
-        initUITimeline(view);
+        for(BabyDo babyDo : babyDoList) {
+            Log.d("doList : " , babyDo.getBabyDoType() + " , " + babyDo.getIssueDate());
 
+            String time = sdf.format(babyDo.getIssueDate());
 
+            Drawable icon = ContextCompat.getDrawable(getActivity(), R.drawable.ic_info_black_24dp);
+            String label = "";
+
+            switch (babyDo.getBabyDoType()) {
+                case FORMULA:
+                    icon = ContextCompat.getDrawable(getActivity(), R.drawable.today_bottle);
+                    label = babyDo.getAmount() + "ml";
+                    break;
+                case BREAST_MILK:
+                    icon = ContextCompat.getDrawable(getActivity(), R.drawable.today_bottle);
+                    if (babyDo.getAmount() > 0) {
+                        label = babyDo.getAmount() + "ml";
+                    } else {
+                        label = "좌 : " + babyDo.getBreastfeedingLeft() + "분, 우 : " + babyDo.getBreastfeedingRight() + "분";
+                    }
+                    break;
+                case POOP:
+                    icon = ContextCompat.getDrawable(getActivity(), R.drawable.today_dong);
+                    label = "양 : " + babyDo.getAmountPoop().toString() + ", 색 : " + babyDo.getColor().toString();
+                    break;
+                case SLEEP:
+                    icon = ContextCompat.getDrawable(getActivity(), R.drawable.today_sleep);
+                    label = sdf.format(babyDo.getStartTime()) + " ~ " + sdf.format(babyDo.getEndTime());
+                    break;
+                default:
+                    break;
+
+            }
+
+            adapter.addItem(icon, label, time);
+        }
     }
 
     private void initUISummary(View view) {
@@ -90,55 +135,6 @@ public class TodayFragment extends BaseFragment {
         textDDay.setText("D +" + dday);
     }
 
-    private void initUITimeline(View view) {
-        List<ExpandableListViewAdapter.Item> selectedDayData = new ArrayList<>();
-        BabyDoRepository repo = new BabyDoRepository(view.getContext());
-
-        //TODO :: 실 배포시 아래 날짜 절대값을 변수로 변경 필요
-        List<BabyDo> babyDoList = repo.getBabyDoListAt(babyId, 2016, 6, 20);
-
-        selectedDayData.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.HEADER, "오늘"));
-
-        if(babyDoList.size() < 1) {
-            selectedDayData.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, "기록 없음"));
-        }
-
-        for(BabyDo babyDo : babyDoList) {
-            int amount = babyDo.getAmount();
-            String note = babyDo.getNote();
-            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
-            String time = sdf.format(babyDo.getIssueDate());
-
-            String icon = "기본";
-            String text = "";
-
-            if (babyDo.getBabyDoType() == BabyDoType.FORMULA) {
-                icon = "분유";
-                text = babyDo.getAmount() + "ml";
-            } else if (babyDo.getBabyDoType() == BabyDoType.POOP) {
-                icon = "대변";
-                text = "양 : " + babyDo.getAmountPoop().toString() + ", 색 : " + babyDo.getColor().toString();
-            } else if (babyDo.getBabyDoType() == BabyDoType.BREAST_MILK) {
-                icon = "모유";
-                if (babyDo.getAmount() > 0) {
-                    text = babyDo.getAmount() + "ml";
-                } else {
-                    text = "좌 : " + babyDo.getBreastfeedingLeft() + "분, 우 : " + babyDo.getBreastfeedingRight() + "분";
-                }
-            } else if (babyDo.getBabyDoType() == BabyDoType.SLEEP) {
-                icon = "수면";
-            }
-
-            String labelText = icon + " " + text;
-
-            selectedDayData.add(new ExpandableListViewAdapter.Item(ExpandableListViewAdapter.CHILD, labelText));
-        }
-        RecyclerView recyclerview = (RecyclerView) view.findViewById(R.id.today_babydo_list);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-
-        recyclerview.setLayoutManager(linearLayoutManager);
-        recyclerview.setAdapter(new ExpandableListViewAdapter(selectedDayData));
-    }
 
 
     // TODO: Rename method, update argument and hook method into UI event

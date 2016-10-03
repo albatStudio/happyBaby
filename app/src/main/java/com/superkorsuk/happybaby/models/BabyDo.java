@@ -167,6 +167,7 @@ public class BabyDo {
         return df.format(issueDate);
     }
 
+    // TODO 요거 고쳐야함. 잘못 구현됨.
     public int getSleepDuration() {
         return endTime.compareTo(startTime);
     }
