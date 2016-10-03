@@ -1,7 +1,6 @@
 package com.superkorsuk.happybaby.util;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -9,10 +8,24 @@ import java.util.Locale;
  */
 public class DateAndTime {
 
+    public static final int A_DAY_IN_MILLIS = 86400000;
+
     // targetDate 가 sourceDate 로 부터 몇일 지났음. (- 이면 몇일 남았음.)
     public static long compareDate(Calendar sourceDate, Calendar targetDate) {
         long compareSec = (targetDate.getTimeInMillis() - sourceDate.getTimeInMillis())/1000;
         return compareSec / (24*60*60);
+    }
+
+    public static int getDDay(Calendar targetDate) {
+        long today = Calendar.getInstance(Locale.getDefault()).getTimeInMillis() / A_DAY_IN_MILLIS;
+        long target = targetDate.getTimeInMillis() / A_DAY_IN_MILLIS;
+        long sub = today - target;
+
+        if (today >= target) {
+            return (int) sub + 1;
+        } else {
+            return (int) sub;
+        }
     }
 
     // targetDate 가 현재로 부터 몇일 지났음. (- 이면 몇일 남았음.)
