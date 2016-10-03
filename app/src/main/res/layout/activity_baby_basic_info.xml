@@ -47,7 +47,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_marginTop="70dp"
-                android:id="@+id/lvBabyBasicInfo"/>
+                android:id="@+id/lvTodayDo"/>
 
         </LinearLayout>
     </LinearLayout>

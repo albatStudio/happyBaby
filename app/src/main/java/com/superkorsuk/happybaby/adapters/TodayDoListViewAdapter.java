@@ -1,0 +1,74 @@
+package com.superkorsuk.happybaby.adapters;
+
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.superkorsuk.happybaby.R;
+import com.superkorsuk.happybaby.views.BabyBasicInfoActivity;
+
+import java.util.ArrayList;
+
+/**
+ * Created by super on 2016-09-25.
+ */
+
+public class TodayDoListViewAdapter extends BaseAdapter {
+    public ArrayList<BabyBasicInfoActivity> listViewItemList = new ArrayList<BabyBasicInfoActivity>();
+
+    public TodayDoListViewAdapter() {
+    }
+
+    @Override
+    public int getCount() {
+        return listViewItemList.size();
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        final int pos = position;
+        final Context context = parent.getContext();
+
+        if(convertView == null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.listview_today_do_list, parent, false);
+        }
+
+        ImageView babyImageView = (ImageView) convertView.findViewById(R.id.ivBabyFace);
+        TextView babyNameTextView = (TextView) convertView.findViewById(R.id.tv_today_dotype);
+        TextView babyDayTextView = (TextView) convertView.findViewById(R.id.tv_today_issuedate);
+
+        BabyBasicInfoActivity listViewItem = listViewItemList.get(position);
+
+        babyImageView.setImageDrawable(listViewItem.getIconDrawable());
+        babyNameTextView.setText(listViewItem.getBabyName());
+        babyDayTextView.setText(listViewItem.getBabyDay());
+
+        return convertView;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return listViewItemList.get(position);
+    }
+
+    public void addItem(Drawable babyPic, String name, String birth) {
+        BabyBasicInfoActivity baby = new BabyBasicInfoActivity();
+
+        baby.setIconDrawable(babyPic);
+        baby.setBabyName(name);
+        baby.setBabyDay(birth);
+
+        listViewItemList.add(baby);
+    }
+}
