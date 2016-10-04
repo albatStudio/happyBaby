@@ -25,9 +25,9 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.superkorsuk.happybaby.db.BabyDoRepository;
 import com.superkorsuk.happybaby.util.Alarm;
-import com.superkorsuk.happybaby.util.Share;
+import com.superkorsuk.happybaby.util.ShareUtil;
 import com.superkorsuk.happybaby.views.BabyBasicInfoActivity;
-import com.superkorsuk.happybaby.util.NotificationRegister;
+import com.superkorsuk.happybaby.util.NotificationRegisterUtil;
 import com.superkorsuk.happybaby.db.BabyRepository;
 import com.superkorsuk.happybaby.models.*;
 import com.superkorsuk.happybaby.views.*;
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity
 
                 Log.d("NOTIFICATION", "notification start.");
 
-                NotificationRegister n = new NotificationRegister(getApplicationContext());
+                NotificationRegisterUtil n = new NotificationRegisterUtil(getApplicationContext());
 
                 Intent intent = new Intent(MainActivity.this, GetPhotoActivity.class);
                 PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, (int) System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent3);
                 break;
             case R.id.btn_share:
-                Share.sendShare(this);
+                ShareUtil.sendShare(this);
                 break;
 
             case R.id.button_go_to_today:
@@ -283,20 +283,11 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        } else if (id == R.id.nav_dev_add_a_baby_do) {
-            addBabyDoRandom();
+        switch (id) {
+            case R.id.nav_share:
+                break;
+            default:
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

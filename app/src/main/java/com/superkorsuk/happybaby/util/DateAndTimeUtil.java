@@ -6,7 +6,7 @@ import java.util.Locale;
 /**
  * Created by 1001078 on 2016. 9. 20..
  */
-public class DateAndTime {
+public class DateAndTimeUtil {
 
     public static final int A_DAY_IN_MILLIS = 86400000;
 

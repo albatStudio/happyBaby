@@ -12,7 +12,7 @@ import com.superkorsuk.happybaby.models.BabyDoFactory;
 import com.superkorsuk.happybaby.models.Gender;
 import com.superkorsuk.happybaby.models.PoopAmount;
 import com.superkorsuk.happybaby.models.PoopColor;
-import com.superkorsuk.happybaby.util.DateAndTime;
+import com.superkorsuk.happybaby.util.DateAndTimeUtil;
 
 import java.sql.SQLException;
 
@@ -74,7 +74,7 @@ public class DBOpenHelper extends OrmLiteSqliteOpenHelper {
         baby.setName("황율");
         baby.setGender(Gender.FEMALE);
         baby.setGestationPeriod(47, 3);
-        baby.setBirthday(DateAndTime.getDate(2016, 5, 29, 1, 1));
+        baby.setBirthday(DateAndTimeUtil.getDate(2016, 5, 29, 1, 1));
         baby.setBirthWeight(3.25);
 
 
@@ -88,33 +88,33 @@ public class DBOpenHelper extends OrmLiteSqliteOpenHelper {
 
     private void insertBabyDoSamples() {
         try {
-            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTime.getDate(2016, 6, 19, 8, 30).getTime(), 60, "" ));
-            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTime.getDate(2016, 6, 19, 11, 0).getTime(), 60, "" ));
-            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTime.getDate(2016, 6, 19, 13, 50).getTime(), 60, "" ));
-            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTime.getDate(2016, 6, 19, 14, 30).getTime(), 60, "" ));
-            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTime.getDate(2016, 6, 19, 15, 20).getTime(), 15, "" ));
-            getBabyDoDao().create(BabyDoFactory.getPoop(1, DateAndTime.getDate(2016, 6, 19, 15, 40).getTime(), PoopAmount.LARGE, PoopColor.YELLOW, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTimeUtil.getDate(2016, 6, 19, 8, 30).getTime(), 60, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTimeUtil.getDate(2016, 6, 19, 11, 0).getTime(), 60, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTimeUtil.getDate(2016, 6, 19, 13, 50).getTime(), 60, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTimeUtil.getDate(2016, 6, 19, 14, 30).getTime(), 60, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTimeUtil.getDate(2016, 6, 19, 15, 20).getTime(), 15, "" ));
+            getBabyDoDao().create(BabyDoFactory.getPoop(1, DateAndTimeUtil.getDate(2016, 6, 19, 15, 40).getTime(), PoopAmount.LARGE, PoopColor.YELLOW, "" ));
 
-            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTime.getDate(2016, 6, 19, 16, 35).getTime(), 15, "" ));
-            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTime.getDate(2016, 6, 19, 18, 0).getTime(), 15, "" ));
-            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTime.getDate(2016, 6, 19, 19, 10).getTime(), 20, "" ));
-            getBabyDoDao().create(BabyDoFactory.getFormula(1, DateAndTime.getDate(2016, 6, 19, 21, 40).getTime(), 60, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTimeUtil.getDate(2016, 6, 19, 16, 35).getTime(), 15, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTimeUtil.getDate(2016, 6, 19, 18, 0).getTime(), 15, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTimeUtil.getDate(2016, 6, 19, 19, 10).getTime(), 20, "" ));
+            getBabyDoDao().create(BabyDoFactory.getFormula(1, DateAndTimeUtil.getDate(2016, 6, 19, 21, 40).getTime(), 60, "" ));
 
-            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTime.getDate(2016, 6, 20, 0, 40).getTime(), 15, "" ));
-            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTime.getDate(2016, 6, 20, 1, 20).getTime(), 30, "" ));
-            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTime.getDate(2016, 6, 20, 4, 30).getTime(), 10, "" ));
-            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTime.getDate(2016, 6, 20, 5, 30).getTime(), 20, "" ));
-            getBabyDoDao().create(BabyDoFactory.getFormula(1, DateAndTime.getDate(2016, 6, 20, 7, 0).getTime(), 55, "" ));
-            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTime.getDate(2016, 6, 20, 10, 0).getTime(), 60, "" ));
-            getBabyDoDao().create(BabyDoFactory.getBreastfeeding(1, DateAndTime.getDate(2016, 6, 20, 10, 0).getTime(), 5, 0, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTimeUtil.getDate(2016, 6, 20, 0, 40).getTime(), 15, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTimeUtil.getDate(2016, 6, 20, 1, 20).getTime(), 30, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTimeUtil.getDate(2016, 6, 20, 4, 30).getTime(), 10, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTimeUtil.getDate(2016, 6, 20, 5, 30).getTime(), 20, "" ));
+            getBabyDoDao().create(BabyDoFactory.getFormula(1, DateAndTimeUtil.getDate(2016, 6, 20, 7, 0).getTime(), 55, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTimeUtil.getDate(2016, 6, 20, 10, 0).getTime(), 60, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastfeeding(1, DateAndTimeUtil.getDate(2016, 6, 20, 10, 0).getTime(), 5, 0, "" ));
 
-            getBabyDoDao().create(BabyDoFactory.getBreastfeeding(1, DateAndTime.getDate(2016, 6, 20, 13, 0).getTime(), 15, 0, "" ));
-            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTime.getDate(2016, 6, 20, 13, 0).getTime(), 60, "" ));
-            getBabyDoDao().create(BabyDoFactory.getFormula(1, DateAndTime.getDate(2016, 6, 20, 16, 15).getTime(), 55, "" ));
-            getBabyDoDao().create(BabyDoFactory.getBreastfeeding(1, DateAndTime.getDate(2016, 6, 20, 19, 20).getTime(), 15, 0, "" ));
-            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTime.getDate(2016, 6, 20, 19, 20).getTime(), 60, "" ));
-            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTime.getDate(2016, 6, 20, 22, 20).getTime(), 60, "" ));
-            getBabyDoDao().create(BabyDoFactory.getFormula(1, DateAndTime.getDate(2016, 6, 20, 23, 40).getTime(), 60, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastfeeding(1, DateAndTimeUtil.getDate(2016, 6, 20, 13, 0).getTime(), 15, 0, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTimeUtil.getDate(2016, 6, 20, 13, 0).getTime(), 60, "" ));
+            getBabyDoDao().create(BabyDoFactory.getFormula(1, DateAndTimeUtil.getDate(2016, 6, 20, 16, 15).getTime(), 55, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastfeeding(1, DateAndTimeUtil.getDate(2016, 6, 20, 19, 20).getTime(), 15, 0, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTimeUtil.getDate(2016, 6, 20, 19, 20).getTime(), 60, "" ));
+            getBabyDoDao().create(BabyDoFactory.getBreastMilk(1, DateAndTimeUtil.getDate(2016, 6, 20, 22, 20).getTime(), 60, "" ));
+            getBabyDoDao().create(BabyDoFactory.getFormula(1, DateAndTimeUtil.getDate(2016, 6, 20, 23, 40).getTime(), 60, "" ));
 
 
 

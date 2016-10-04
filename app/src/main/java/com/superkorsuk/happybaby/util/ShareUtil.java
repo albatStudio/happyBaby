@@ -15,7 +15,7 @@ import java.util.List;
  * Created by jjhok on 2016. 9. 26..
  */
 
-public class Share {
+public class ShareUtil {
     // TODO : more test with device..
     public static void sendShare(Context context) {
         Intent intent = new Intent(Intent.ACTION_SEND);

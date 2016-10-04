@@ -24,7 +24,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         Intent intent1 = new Intent(context, GetPhotoActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent1, 0);
 
-        NotificationRegister notificationRegister = new NotificationRegister(context);
+        NotificationRegisterUtil notificationRegister = new NotificationRegisterUtil(context);
         notificationRegister.notify(notificationRegister.makeSimpleNotification(pendingIntent, "NOTI Title", "Subject message"));
     }
 }

@@ -1,7 +1,7 @@
 package com.superkorsuk.happybaby;
 
 
-import com.superkorsuk.happybaby.util.DateAndTime;
+import com.superkorsuk.happybaby.util.DateAndTimeUtil;
 
 import org.junit.Test;
 
@@ -32,14 +32,14 @@ public class ExampleUnitTest {
         tomorrow.add(Calendar.DATE, 1);
         tomorrow.set(Calendar.HOUR_OF_DAY, 13);
 
-        assertEquals(2, DateAndTime.getDDay(yesterday));
+        assertEquals(2, DateAndTimeUtil.getDDay(yesterday));
 
         yesterday.set(Calendar.HOUR_OF_DAY, 11);
-        assertEquals(2, DateAndTime.getDDay(yesterday));
+        assertEquals(2, DateAndTimeUtil.getDDay(yesterday));
 
-        assertEquals(-1, DateAndTime.getDDay(tomorrow));
+        assertEquals(-1, DateAndTimeUtil.getDDay(tomorrow));
         tomorrow.set(Calendar.HOUR_OF_DAY, 11);
-        assertEquals(-1, DateAndTime.getDDay(tomorrow));
+        assertEquals(-1, DateAndTimeUtil.getDDay(tomorrow));
 
 
 

@@ -13,15 +13,10 @@ import com.superkorsuk.happybaby.db.BabyDoRepository;
 import com.superkorsuk.happybaby.db.BabyRepository;
 import com.superkorsuk.happybaby.models.BabyDo;
 import com.superkorsuk.happybaby.models.BabyDoType;
-import com.superkorsuk.happybaby.models.PoopAmount;
-import com.superkorsuk.happybaby.models.PoopColor;
-import com.superkorsuk.happybaby.util.DateAndTime;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import me.nlmartian.silkcal.DatePickerController;
 import me.nlmartian.silkcal.DayPickerView;

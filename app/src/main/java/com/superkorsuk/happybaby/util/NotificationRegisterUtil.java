@@ -13,11 +13,11 @@ import com.superkorsuk.happybaby.R;
 /**
  * Created by 1001078 on 2016. 9. 19..
  */
-public class NotificationRegister {
+public class NotificationRegisterUtil {
     Context context;
     NotificationManager notificationManager;
 
-    public NotificationRegister(Context context) {
+    public NotificationRegisterUtil(Context context) {
         this.context = context;
         this.notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
     }

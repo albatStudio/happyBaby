@@ -19,7 +19,7 @@ import com.superkorsuk.happybaby.db.BabyDoRepository;
 import com.superkorsuk.happybaby.db.BabyRepository;
 import com.superkorsuk.happybaby.models.Baby;
 import com.superkorsuk.happybaby.models.BabyDo;
-import com.superkorsuk.happybaby.util.DateAndTime;
+import com.superkorsuk.happybaby.util.DateAndTimeUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -130,7 +130,7 @@ public class TodayFragment extends BaseFragment {
 
         Baby baby = babyRepo.find(babyId);
         Calendar birthday = baby.getBirthDayToCalendar();
-        long dday = DateAndTime.getDDay(birthday);
+        long dday = DateAndTimeUtil.getDDay(birthday);
 
         textDDay.setText("D +" + dday);
     }

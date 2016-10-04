@@ -4,12 +4,11 @@ import android.content.Context;
 import com.j256.ormlite.dao.Dao;
 import com.superkorsuk.happybaby.models.BabyDo;
 import com.superkorsuk.happybaby.models.BabyDoType;
-import com.superkorsuk.happybaby.util.DateAndTime;
+import com.superkorsuk.happybaby.util.DateAndTimeUtil;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -106,7 +105,7 @@ public class BabyDoRepository implements Repository<BabyDo> {
                     .where()
                     .eq(BabyDo.BABY_ID_FIELD_NAME, babyId)
                     .and()
-                    .between(BabyDo.ISSUE_DATE_FIELD_NAME, DateAndTime.getDate(2016, 6, 20, 0, 0).getTime(), new Date())
+                    .between(BabyDo.ISSUE_DATE_FIELD_NAME, DateAndTimeUtil.getDate(2016, 6, 20, 0, 0).getTime(), new Date())
                     .query();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -124,7 +123,7 @@ public class BabyDoRepository implements Repository<BabyDo> {
      * @return
      */
     public List<BabyDo> getBabyDoListAt(int babyId, int year, int month, int date) {
-        Date startDate = DateAndTime.getDate(year, month, date, 0, 0).getTime();
+        Date startDate = DateAndTimeUtil.getDate(year, month, date, 0, 0).getTime();
         Date nextDate = new Date(startDate.getTime() + 60 * 60 * 24 * 1000 - 1);
 
         List<BabyDo> babies = new ArrayList<>();
@@ -153,7 +152,7 @@ public class BabyDoRepository implements Repository<BabyDo> {
      * @return
      */
     public List<BabyDo> getBabyDoListAt(int babyId, int year, int month, int date, BabyDoType type) {
-        Date startDate = DateAndTime.getDate(year, month, date, 0, 0).getTime();
+        Date startDate = DateAndTimeUtil.getDate(year, month, date, 0, 0).getTime();
         Date nextDate = new Date(startDate.getTime() + 60 * 60 * 24 * 1000 - 1);
 
         List<BabyDo> babies = new ArrayList<>();
@@ -203,7 +202,7 @@ public class BabyDoRepository implements Repository<BabyDo> {
      * @return
      */
     private int getFeedingAmountAt(int babyId, int year, int month, int date) {
-        Date startDate = DateAndTime.getDate(year, month, date, 0, 0).getTime();
+        Date startDate = DateAndTimeUtil.getDate(year, month, date, 0, 0).getTime();
         Date nextDate = new Date(startDate.getTime() + 60 * 60 * 24 * 1000 - 1);
 
         String[] results = new String[]{"0"};
@@ -254,7 +253,7 @@ public class BabyDoRepository implements Repository<BabyDo> {
      * @return
      */
     private int getFeedingDurationAt(int babyId, int year, int month, int date) {
-        Date startDate = DateAndTime.getDate(year, month, date, 0, 0).getTime();
+        Date startDate = DateAndTimeUtil.getDate(year, month, date, 0, 0).getTime();
         Date nextDate = new Date(startDate.getTime() + 60 * 60 * 24 * 1000 - 1);
 
         String[] results = new String[]{"0"};

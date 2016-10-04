@@ -3,46 +3,34 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_test"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="무슨 기능을 넣을까." />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Social">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="앱 공유" />
         </menu>
     </item>
 
-    <item android:title="Developer">
+    <item android:title="Settings">
         <menu>
             <item
-                android:id="@+id/nav_dev_alarm_for_one_time"
+                android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_menu_manage"
-                android:title="Menu" />
+                android:title="설정" />
             <item
-                android:id="@+id/nav_dev_add_a_baby_do"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="Add A Baby Do" />
+            android:id="@+id/nav_review"
+            android:icon="@drawable/ic_child_care_black_24dp"
+            android:title="평점 남기기" />
+            <item
+                android:id="@+id/nav_request_to_developer"
+                android:icon="@drawable/ic_info_black_24dp"
+                android:title="문의하기" />
         </menu>
     </item>
 
