@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
@@ -65,10 +66,7 @@ public class TodayActivity extends AppCompatActivity
 
                 if (tabId == R.id.tab_today) {
                     switchTab(tabId);
-                } else if (tabId == R.id.tab_baby_do) {
-                    switchTab(tabId);
-
-                } else if (tabId == R.id.tab_growth) {
+                }  else if (tabId == R.id.tab_growth) {
                     switchTab(tabId);
 
                 } else if (tabId == R.id.tab_statistics) {
@@ -100,9 +98,6 @@ public class TodayActivity extends AppCompatActivity
             todayFrag.setBabyId(BabyUtil.getCurrentBabyId(getSharedPreferences("status", MODE_PRIVATE)));
             loadFragment(todayFrag);
             setTitle("Today");
-        } else if (tabId == R.id.tab_baby_do) {
-            loadFragment(new BabyDoFragment());
-            setTitle("한일 입력");
         } else if (tabId == R.id.tab_growth) {
             loadFragment(new GrowthFragment());
             setTitle("아기 성장");
@@ -136,6 +131,16 @@ public class TodayActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fab_today:
+                startActivity(new Intent(TodayActivity.this, AddBabyDoActivity.class ));
+                break;
+            default:
+                break;
+        }
     }
 
 

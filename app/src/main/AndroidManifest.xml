@@ -48,10 +48,14 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".views.FirebaseActivity" />
         <activity android:name=".views.BabyAddActivity" />
-        <activity android:name=".views.TodayActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
-        <activity android:name=".views.StatisticsCalendarActivity"></activity>
+        <activity
+            android:name=".views.TodayActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".views.StatisticsCalendarActivity" />
+        <activity
+            android:name=".views.AddBabyDoActivity"
+            android:label="@string/title_activity_add_baby_do"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

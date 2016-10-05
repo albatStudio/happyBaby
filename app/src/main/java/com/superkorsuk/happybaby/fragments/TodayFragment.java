@@ -164,4 +164,13 @@ public class TodayFragment extends BaseFragment {
     public void setBabyId(int babyId) {
         this.babyId = babyId;
     }
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fab_today:
+                break;
+            default:
+                break;
+        }
+    }
 }

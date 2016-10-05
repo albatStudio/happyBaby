@@ -3,10 +3,7 @@
         id="@+id/tab_today"
         icon="@drawable/ic_today_black_24dp"
         title="Today" />
-    <tab
-        id="@+id/tab_baby_do"
-        icon="@drawable/ic_note_add_black_24dp"
-        title="Baby Do" />
+
     <tab
         id="@+id/tab_growth"
         icon="@drawable/ic_accessibility_black_24dp"
