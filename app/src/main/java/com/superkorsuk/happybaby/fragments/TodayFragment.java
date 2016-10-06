@@ -70,7 +70,9 @@ public class TodayFragment extends BaseFragment {
 
     private void initUITodayDoList(View view) {
         BabyDoRepository repo = new BabyDoRepository(view.getContext());
-        List<BabyDo> babyDoList = repo.getBabyDoListAt(babyId, 2016, 6, 20);
+        Calendar today = Calendar.getInstance(Locale.getDefault());
+
+        List<BabyDo> babyDoList = repo.getBabyDoListAt(babyId, today.get(Calendar.YEAR), today.get(Calendar.MONTH) + 1, today.get(Calendar.DATE));
 
         // ListView Set
         ListView listView = (ListView) view.findViewById(R.id.today_babydo_list);

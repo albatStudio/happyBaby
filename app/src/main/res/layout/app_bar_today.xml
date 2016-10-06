@@ -28,7 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom_bar">
-
     </FrameLayout>
 
     <com.roughike.bottombar.BottomBar
@@ -36,6 +35,10 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="bottom"
-        app:bb_tabXmlResource="@xml/gnb" />
+        app:bb_tabXmlResource="@xml/gnb"
+        android:background="@color/colorPrimary"
+        app:bb_activeTabColor="@android:color/white"
+        app:bb_inActiveTabAlpha="0.6"
+        app:bb_inActiveTabColor="@android:color/white"/>
 
 </android.support.design.widget.CoordinatorLayout>

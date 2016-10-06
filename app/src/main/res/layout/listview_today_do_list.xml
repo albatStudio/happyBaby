@@ -4,7 +4,8 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:paddingLeft="16dp">
+    android:paddingLeft="16dp"
+    android:background="@android:color/white">
 
     <ImageView
         android:layout_width="40dp"

@@ -36,7 +36,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:hint="이름을 입력하세요."
-                android:id="@+id/et_baby_name" />
+                android:id="@+id/et_baby_name"
+                android:fontFamily="sans-serif" />
 
             <Space
                 android:layout_width="match_parent"
