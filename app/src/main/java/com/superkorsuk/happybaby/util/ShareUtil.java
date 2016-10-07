@@ -53,4 +53,16 @@ public class ShareUtil {
         chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, shareIntentList.toArray(new Parcelable[]{}));
         context.startActivity(chooserIntent);
     }
+
+    public static void sendMail(Context context, String sendMailAdress){
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        intent.setType("plaine/text");
+        intent.putExtra(Intent.EXTRA_EMAIL, sendMailAdress);
+//        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+//        intent.putExtra(Intent.EXTRA_TEXT, content);
+        context.startActivity(Intent.createChooser(intent, "Email 앱을 선택해 주세요."));
+    }
 }

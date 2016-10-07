@@ -48,6 +48,7 @@ import java.util.List;
 import me.drakeet.materialdialog.MaterialDialog;
 
 import static android.R.attr.data;
+import static android.R.attr.start;
 
 
 public class TodayActivity extends AppCompatActivity
@@ -58,12 +59,14 @@ public class TodayActivity extends AppCompatActivity
     private static final int GET_PHOTO_FROM_CAMERA = 1;
     private static final int CROP_IMAGE = 2;
 
-    BottomBar bottomBar;
+    private static final String ALBAT_STUDIO_EMAIL = "albat.studio@gmail.com";
 
-    Uri imagePath;
+    BottomBar bottomBar;
+    DrawerLayout drawer;
     NavigationView navigationView;
     Baby currentBaby;
-    List<Baby> subBabies = new ArrayList<Baby>();
+    Uri imagePath;
+    List<Baby> subBabies = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,30 +76,46 @@ public class TodayActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_today);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+            }
+
+            public void onDrawerOpened(View view) {
+                super.onDrawerOpened(view);
+                setupBabies();
+                setupNavigationView();
+            }
+        };
+
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
 
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        setupBabies();
+        setupNavigationView();
+
+        createBottomBarListeners(savedInstanceState);
+    }
+
+    private void setupBabies() {
+        subBabies.clear();
         int mainBabyId = BabyUtil.getCurrentBabyId(getSharedPreferences("status", MODE_PRIVATE));
         List<Baby> allBabies = new BabyRepository(this).all();
         for (Baby baby:
-             allBabies) {
+                allBabies) {
             if (baby.getId() == mainBabyId) {
                 currentBaby = baby;
             } else {
                 subBabies.add(baby);
             }
         }
-
-        setupNavigationView();
-
-        createBottomBarListeners(savedInstanceState);
     }
 
     @Override
@@ -186,7 +205,7 @@ public class TodayActivity extends AppCompatActivity
             }
         });
 
-        setupProfileImage(imageViewProfile, "profile_" + currentBaby.getId() + ".jpg");
+        setupProfileImage(imageViewProfile, currentBaby.getId());
 
         // Sub babies profile ImageView
         ImageView imageViewSubProfile = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.imageView_subProfile);
@@ -197,6 +216,7 @@ public class TodayActivity extends AppCompatActivity
         View.OnClickListener createBabyListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                drawer.closeDrawers();
                 Intent intentNewBaby = new Intent(TodayActivity.this, BabyAddActivity.class);
                 startActivity(intentNewBaby);
             }
@@ -224,15 +244,15 @@ public class TodayActivity extends AppCompatActivity
                 imageViewSubProfile.setOnClickListener(createBabyListener);
                 break;
             case 1 :
-                setupProfileImage(imageViewSubProfile, "profile_" + subBabies.get(0).getId() + ".jpg");
+                setupProfileImage(imageViewSubProfile, subBabies.get(0).getId());
                 imageViewSubProfile.setOnClickListener(currentBabyChangeListener);
                 imageViewSubProfile2.setImageResource(R.drawable.circle_plus);
                 imageViewSubProfile2.setOnClickListener(createBabyListener);
                 break;
             case 2 :
-                setupProfileImage(imageViewSubProfile, subBabies.get(0).getId() + "");
+                setupProfileImage(imageViewSubProfile, subBabies.get(0).getId());
                 imageViewSubProfile.setOnClickListener(currentBabyChangeListener);
-                setupProfileImage(imageViewSubProfile2, subBabies.get(1).getId() + "");
+                setupProfileImage(imageViewSubProfile2, subBabies.get(1).getId());
                 imageViewSubProfile2.setOnClickListener(currentBabyChangeListener);
                 break;
             default:
@@ -241,8 +261,8 @@ public class TodayActivity extends AppCompatActivity
         }
     }
 
-    private void setupProfileImage(ImageView toSetImageView, String fileName) {
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/happyBaby/" + fileName);
+    private void setupProfileImage(ImageView toSetImageView, long babyId) {
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/happyBaby/profile_" + babyId + ".jpg");
         Bitmap storedBitmap;
         if (file.canRead()) {
             storedBitmap = BitmapFactory.decodeFile(String.valueOf(file));
@@ -330,6 +350,11 @@ public class TodayActivity extends AppCompatActivity
             case R.id.nav_share:
                 ShareUtil.sendShare(this);
                 break;
+            case R.id.nav_review:
+                break;
+            case R.id.nav_request_to_developer:
+                drawer.closeDrawers();
+                ShareUtil.sendMail(this, ALBAT_STUDIO_EMAIL);
             default:
                 break;
         }
